@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { fromEvent, of, Subject, Subscription } from 'rxjs';
-import { map, debounceTime, distinctUntilChanged} from 'rxjs/operators';
-import { inputPayload } from '../reducers/selectedComponentStyle';
+import { map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { inputPlaceholderAction } from '../reducers/inputPlaceholder';
+
+import { widthAction } from '../reducers/width';
 
 @Component({
   selector: 'app-accordion',
@@ -11,28 +13,27 @@ import { inputPayload } from '../reducers/selectedComponentStyle';
   styleUrls: ['./accordion.component.scss'],
 })
 export class AccordionComponent implements OnInit {
-  items = ['Item 1'];
+  items = ['Styles Controler'];
   expandedIndex = 0;
+  value = '';
+  widthValue = '';
+  inputPlaceholder = new FormControl('');
+  width = new FormControl('');
 
-  name = new FormControl('');
-
-
-
-
-  log() {
- 
-  }
 
   constructor(private store: Store) {
-
-
-    this.name.valueChanges.pipe(debounceTime(500), distinctUntilChanged()).subscribe((val)=> this.store.dispatch(inputPayload({ inputPlaceholder: val })))
-
-    
+    this.inputPlaceholder.valueChanges
+      .pipe(debounceTime(500), distinctUntilChanged())
+      .subscribe((val) =>
+        this.store.dispatch(inputPlaceholderAction({ inputPlaceholder: val }))
+      );
+      
+    this.width.valueChanges
+      .pipe(debounceTime(500), distinctUntilChanged())
+      .subscribe((val) =>
+        this.store.dispatch(widthAction({ width: val }))
+      );
   }
 
-
-
   ngOnInit() {}
-
 }

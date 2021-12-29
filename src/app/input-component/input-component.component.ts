@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { inputPayload, selectedInputPlaceholder } from '../reducers/selectedComponentStyle';
+import {  inputPlaceholderAction, selectedInputPlaceholder } from '../reducers/inputPlaceholder';
+import { selectedWidth } from '../reducers/width';
 
 @Component({
   selector: 'app-input-component',
@@ -10,11 +11,13 @@ import { inputPayload, selectedInputPlaceholder } from '../reducers/selectedComp
 })
 export class InputComponentComponent implements OnInit {
   inputPlaceholder$ = this.store.select(selectedInputPlaceholder)
+  width$ = this.store.select(selectedWidth)
+
   clear(){
-    this.store.dispatch(inputPayload({inputPlaceholder: ''}))
+    this.store.dispatch(inputPlaceholderAction({inputPlaceholder: ''}))
   }
 
-  value = 'Clear You';
+
 
   constructor(private store : Store) { }
 

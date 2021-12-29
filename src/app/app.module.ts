@@ -25,7 +25,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { AppEffects } from './app.effects';
-import { AccordionComponent } from './accordion/accordion.component'
+import { AccordionComponent } from './accordion/accordion.component';
+import { StylesControlerSectionComponent } from './styles-controler-section/styles-controler-section.component'
 
 
 
@@ -40,7 +41,8 @@ import { AccordionComponent } from './accordion/accordion.component'
     TextareaComponent,
     CheckboxComponent,
     SelectOptionComponent,
-    AccordionComponent
+    AccordionComponent,
+    StylesControlerSectionComponent
   ],
   imports: [
     BrowserModule,

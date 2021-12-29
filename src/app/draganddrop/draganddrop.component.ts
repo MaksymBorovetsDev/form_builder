@@ -14,7 +14,6 @@ import {
   updatedAtSelector,
 } from '../reducers/counter';
 import { map, filter } from 'rxjs/operators';
-import { selectedInputPlaceholder, selectedSelector, setSelectedAction } from '../reducers/selectedComponentStyle';
 import { addItem, itemListSelector } from '../reducers/items';
 import { interval } from 'rxjs';
 
@@ -31,7 +30,6 @@ export interface DragAndDropData{
 export class DraganddropComponent implements OnInit {
   value: string = 'Clear me';
 
-  // inputPlaceholder$ = this.store.select(selectedInputPlaceholder)
   
   date = Math.floor(Math.random() * 7373)
   dispatchArray(title: string) {
