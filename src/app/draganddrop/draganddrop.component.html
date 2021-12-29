@@ -1,30 +1,10 @@
 <div class="example-container">
-  <button class="fz-30 m-10 p-20" (click)="increase()">+</button>
-  <button
-    class="fz-30 m-10 p-20"
-    [disabled]="cannotDecrease$ | async"
-    (click)="decrease()"
-  >
-    -
-  </button>
-  <button
-    class="fz-30 m-10 p-20"
-    [disabled]="cannotDecrease$ | async"
-    (click)="clear()"
-  >
-    Clear
-  </button>
-  <p>{{ count$ | async }}</p>
-  <p *ngIf="updatedAt$ | async" class="fz-30">
-    Обновлялось
-    {{ updatedAt$ | async | date: "HH:mm:ss dd/MM/yyyy" }}
-  </p>
-
+  <h2>Make Styles HERE</h2>
   <app-accordion></app-accordion>
 </div>
 
 <div class="example-container">
-  <h2>To do</h2>
+  <h2>Drag HERE</h2>
 
   <div
     cdkDropList="cdkDropList"
@@ -37,7 +17,7 @@
       <div
         *ngIf="item.name === 'input'"
         class="example-box"
-        (click)="dispatchArray(item.name)"
+
       >
         <app-input-component></app-input-component>
       </div>
@@ -49,7 +29,7 @@
       <div
         *ngIf="item.name === 'textarea'"
         class="example-box"
-        (click)="dispatchArray(item.name)"
+
       >
         <app-textarea></app-textarea>
       </div>
@@ -57,7 +37,7 @@
       <div
         *ngIf="item.name === 'checkbox'"
         class="example-box"
-        (click)="dispatchArray(item.name)"
+
       >
         <app-checkbox></app-checkbox>
       </div>
@@ -65,7 +45,7 @@
       <div
         *ngIf="item.name === 'select option'"
         class="example-box"
-        (click)="dispatchArray(item.name)"
+
       >
         <app-select-option></app-select-option>
       </div>
@@ -74,7 +54,7 @@
 </div>
 
 <div class="example-container">
-  <h2>Done</h2>
+  <h2 >Take from HERE</h2>
 
   <div
     cdkDropList="cdkDropList"

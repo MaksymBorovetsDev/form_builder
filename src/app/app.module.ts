@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {DragDropModule} from '@angular/cdk/drag-drop'
 import {CdkAccordionModule} from '@angular/cdk/accordion'
 import { MatButtonModule } from '@angular/material/button'
+import { MatRadioModule} from '@angular/material/radio'
 import { MatInputModule } from '@angular/material/input'
 import { MatCheckboxModule } from '@angular/material/checkbox'
 import { MatIconModule } from '@angular/material/icon'
@@ -26,7 +27,8 @@ import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { AppEffects } from './app.effects';
 import { AccordionComponent } from './accordion/accordion.component';
-import { StylesControlerSectionComponent } from './styles-controler-section/styles-controler-section.component'
+import { StylesControlerSectionComponent } from './styles-controler-section/styles-controler-section.component';
+import { FontWeightSelectComponent } from './font-weight-select/font-weight-select.component'
 
 
 
@@ -42,7 +44,8 @@ import { StylesControlerSectionComponent } from './styles-controler-section/styl
     CheckboxComponent,
     SelectOptionComponent,
     AccordionComponent,
-    StylesControlerSectionComponent
+    StylesControlerSectionComponent,
+    FontWeightSelectComponent
   ],
   imports: [
     BrowserModule,
@@ -52,6 +55,7 @@ import { StylesControlerSectionComponent } from './styles-controler-section/styl
     MatButtonModule,
     MatInputModule,
     MatCheckboxModule,
+    MatRadioModule,
     FormsModule,
     ReactiveFormsModule,
     MatIconModule,

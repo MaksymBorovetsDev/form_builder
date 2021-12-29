@@ -23,6 +23,7 @@
       [attr.aria-labelledby]="'accordion-header-' + index"
     >
     <div class="flex flex-col ">
+    <!--  -->
       <div>
       <mat-form-field class="example-form-field" appearance="fill">
         <mat-label>Input Placeholder</mat-label>
@@ -31,6 +32,7 @@
         </button>
       </mat-form-field>
     </div>
+    <!--  -->
       <div>
       <mat-form-field class="example-form-field " appearance="fill">
         <mat-label>Width</mat-label>
@@ -40,7 +42,22 @@
         </button>
       </mat-form-field>
     </div>
+    <!--  -->
+      <div>
+      <mat-form-field class="example-form-field " appearance="fill">
+        <mat-label>Height</mat-label>
+        <input matInput type="text" [formControl]='height' [(ngModel)]="heightValue">
+        <button *ngIf="heightValue" matSuffix mat-icon-button aria-label="Clear" (click)="heightValue=''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+    <!--  -->
+    <app-font-weight-select></app-font-weight-select>
+    <!--  -->
 
+
+    
     </div>
 
     </div>
