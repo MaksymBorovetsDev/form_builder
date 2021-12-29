@@ -1,0 +1,85 @@
+<div class="example-container">
+  <button class="fz-30 m-10 p-20" (click)="increase()">+</button>
+  <button
+    class="fz-30 m-10 p-20"
+    [disabled]="cannotDecrease$ | async"
+    (click)="decrease()"
+  >
+    -
+  </button>
+  <button class="fz-30 m-10 p-20" [disabled]="cannotDecrease$ | async" (click)="clear()">
+    Clear
+  </button>
+  <p>{{ count$ | async }}</p>
+  <p *ngIf="updatedAt$ | async " class="fz-30">
+    Обновлялось :
+    {{ updatedAt$ | async | date: "HH:mm:ss dd/MM/yyyy" }}
+  </p>
+
+
+
+
+  <app-accordion></app-accordion>
+</div>
+
+<div class="example-container">
+  <h2>To do</h2>
+
+  <div
+    cdkDropList="cdkDropList"
+    #todoList="cdkDropList"
+    [cdkDropListData]="todo"
+    class="example-list"
+    (cdkDropListDropped)="drop($event)"
+  >
+    <div *ngFor="let item of todo; let i = index;  " cdkDrag="cdkDrag" >
+
+      
+        <div *ngIf="item.name === 'input' " class="example-box" (click)= "dispatchArray(item.name)" >
+          
+            <app-input-component></app-input-component>
+
+        </div>
+
+
+        <div  *ngIf="item.name === 'button'" class="example-box"  >
+          <app-button-component></app-button-component>
+        </div>
+
+
+        <div *ngIf="item.name === 'textarea'" class="example-box" (click)= "dispatchArray(item.name)" >
+          <app-textarea></app-textarea>
+        </div>
+
+
+        <div *ngIf="item.name === 'checkbox'" class="example-box" (click)= "dispatchArray(item.name)">
+          <app-checkbox></app-checkbox>
+        </div>
+
+
+        <div  *ngIf="item.name === 'select option'" class="example-box" (click)= "dispatchArray(item.name)">
+          <app-select-option></app-select-option>
+        </div>
+
+
+    </div>
+  </div>
+
+</div>
+
+<div class="example-container">
+  <h2>Done</h2>
+
+  <div
+    cdkDropList="cdkDropList"
+    #doneList="cdkDropList"
+    [cdkDropListData]="done"
+    [cdkDropListConnectedTo]="[todoList]"
+    class="example-list"
+    (cdkDropListDropped)="drop($event)"
+  >
+    <div class="example-box" *ngFor="let item of done" cdkDrag="cdkDrag">
+      {{ item.name }}
+    </div>
+  </div>
+</div>

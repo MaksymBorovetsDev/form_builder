@@ -1,0 +1,8 @@
+
+        <mat-form-field class="example-form-field" appearance="fill" cdkDrag="cdkDrag">
+            <mat-label>Clearable input</mat-label>
+            <input matInput="matInput" type="text" [ngModel]="inputPlaceholder$ | async">
+                <button *ngIf="inputPlaceholder$ | async" matSuffix="matSuffix" mat-icon-button="mat-icon-button" aria-label="Clear" (click)="clear()">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
