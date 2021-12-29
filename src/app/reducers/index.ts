@@ -1,5 +1,8 @@
 import { ActionReducerMap, MetaReducer } from '@ngrx/store';
 import { environment } from '../../environments/environment';
+import { borderRadiusReducer, BORDER_RADIUS_KEY, IBorderRadius } from './borderRadius';
+import { borderStyleReducer, BORDER_STYLE_KEY, IBorderStyle } from './borderStyle';
+import { borderWidthReducer, BORDER_WIDTH_KEY, IBorderWidth } from './borderWidth';
 import { colorRGBReducer, COLOR_RGB_KEY, IColorRGB } from './colorRGB';
 import { fontSizeReducer, FONT_SIZE_KEY, IFontSize } from './fontSize';
 import { fontWeightReducer, FONT_WEIGHT_KEY, IFontWeight } from './fontWeight';
@@ -19,6 +22,9 @@ export interface State {
   [FONT_WEIGHT_KEY]: IFontWeight;
   [COLOR_RGB_KEY]: IColorRGB;
   [FONT_SIZE_KEY]: IFontSize;
+  [BORDER_STYLE_KEY]: IBorderStyle;
+  [BORDER_WIDTH_KEY]: IBorderWidth;
+  [BORDER_RADIUS_KEY]: IBorderRadius;
 }
 
 export const reducers: ActionReducerMap<State> = {
@@ -28,6 +34,9 @@ export const reducers: ActionReducerMap<State> = {
   [FONT_WEIGHT_KEY]: fontWeightReducer,
   [COLOR_RGB_KEY]: colorRGBReducer,
   [FONT_SIZE_KEY]: fontSizeReducer,
+  [BORDER_STYLE_KEY]: borderStyleReducer,
+  [BORDER_WIDTH_KEY]: borderWidthReducer,
+  [BORDER_RADIUS_KEY]: borderRadiusReducer,
 };
 
 export const metaReducers: MetaReducer<State>[] = !environment.production

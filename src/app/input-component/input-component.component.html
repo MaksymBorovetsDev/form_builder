@@ -1,16 +1,22 @@
 <mat-form-field
-  [ngStyle]="{ width: width$ | async }"
+  [ngStyle]="{
+    width: width$ | async,
+    borderStyle: borderStyle$ | async ,
+    borderWidth: borderWidth$ | async ,
+    borderRadius: borderRadius$ | async ,
+    padding: '25px'
+  }"
   class="example-form-field"
   appearance="fill"
   cdkDrag="cdkDrag"
 >
-  <mat-label>Clearable input</mat-label>
   <input
     [ngStyle]="{
       height: height$ | async,
       fontSize: fontSize$ | async,
       fontWeight: fontWeight$ | async,
-      color: colorRGB$ | async
+      color: colorRGB$ | async,
+      padding: '10px'
     }"
     matInput="matInput"
     type="text"
@@ -22,7 +28,6 @@
     mat-icon-button="mat-icon-button"
     aria-label="Clear"
     (click)="clear()"
-    
   >
     <mat-icon>close</mat-icon>
   </button>

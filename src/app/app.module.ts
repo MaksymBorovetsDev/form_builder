@@ -12,6 +12,7 @@ import { MatButtonModule } from '@angular/material/button'
 import { MatRadioModule} from '@angular/material/radio'
 import { MatInputModule } from '@angular/material/input'
 import { MatCheckboxModule } from '@angular/material/checkbox'
+import { MatChipsModule } from '@angular/material/chips'
 import { MatIconModule } from '@angular/material/icon'
 import { MatSelectModule } from '@angular/material/select';
 import { InputComponentComponent } from './input-component/input-component.component';
@@ -28,7 +29,9 @@ import { EffectsModule } from '@ngrx/effects';
 import { AppEffects } from './app.effects';
 import { AccordionComponent } from './accordion/accordion.component';
 import { StylesControlerSectionComponent } from './styles-controler-section/styles-controler-section.component';
-import { FontWeightSelectComponent } from './font-weight-select/font-weight-select.component'
+import { FontWeightSelectComponent } from './font-weight-select/font-weight-select.component';
+import { BorderStylesControlerComponent } from './border-styles-controler/border-styles-controler.component';
+
 
 
 
@@ -45,7 +48,8 @@ import { FontWeightSelectComponent } from './font-weight-select/font-weight-sele
     SelectOptionComponent,
     AccordionComponent,
     StylesControlerSectionComponent,
-    FontWeightSelectComponent
+    FontWeightSelectComponent,
+    BorderStylesControlerComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,6 +58,7 @@ import { FontWeightSelectComponent } from './font-weight-select/font-weight-sele
     CdkAccordionModule,
     MatButtonModule,
     MatInputModule,
+    MatChipsModule,
     MatCheckboxModule,
     MatRadioModule,
     FormsModule,

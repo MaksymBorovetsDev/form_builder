@@ -1,0 +1,83 @@
+<h3>Border Styles Controler</h3>
+<div class="borderStylesControlerContainer">
+  <div>
+    <label id="example-radio-group-label">Border Style</label>
+    <mat-radio-group
+      aria-labelledby="example-radio-group-label"
+      class="example-radio-group"
+    >
+      <mat-radio-button
+        (click)="dispatchValue('solid')"
+        class="example-radio-button"
+        value="1"
+      >
+        Solid
+      </mat-radio-button>
+      <mat-radio-button
+        (click)="dispatchValue('dashed')"
+        class="example-radio-button"
+        value="2"
+      >
+        Dashed
+      </mat-radio-button>
+      <mat-radio-button
+        class="example-radio-button"
+        (click)="dispatchValue('dotted')"
+        value="3"
+      >
+        Dotted
+      </mat-radio-button>
+      <mat-radio-button
+        class="example-radio-button"
+        (click)="dispatchValue('none')"
+        value="5"
+      >
+        None
+      </mat-radio-button>
+    </mat-radio-group>
+  </div>
+  <div class="inputContainer">
+    <!--  -->
+    <p>Set Border Width</p>
+    <mat-form-field class="example-form-field" appearance="fill">
+
+      <input
+        matInput
+        type="text"
+        [formControl]="borderWidth"
+        [(ngModel)]="borderWidthValue"
+      />
+      <button
+        *ngIf="borderWidthValue"
+        matSuffix
+        mat-icon-button
+        aria-label="Clear"
+        (click)="borderWidthValue = ''"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+    <!--  -->
+    <p>Set Border Radius</p>
+
+    <mat-form-field class="example-form-field" appearance="fill">
+
+      <input
+        matInput
+        type="text"
+        [formControl]="borderRadius"
+        [(ngModel)]="borderRadiusValue"
+      />
+      <button
+        *ngIf="borderRadiusValue"
+        matSuffix
+        mat-icon-button
+        aria-label="Clear"
+        (click)="borderRadiusValue = ''"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+    <!--  -->
+  </div>
+</div>
