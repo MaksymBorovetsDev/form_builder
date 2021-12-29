@@ -6,7 +6,12 @@
 >
   <mat-label>Clearable input</mat-label>
   <input
-    [ngStyle]="{ height: height$ | async , fontWeight: fontWeight$ | async, color: colorRGB$ | async}"
+    [ngStyle]="{
+      height: height$ | async,
+      fontSize: fontSize$ | async,
+      fontWeight: fontWeight$ | async,
+      color: colorRGB$ | async
+    }"
     matInput="matInput"
     type="text"
     [ngModel]="inputPlaceholder$ | async"
@@ -17,6 +22,7 @@
     mat-icon-button="mat-icon-button"
     aria-label="Clear"
     (click)="clear()"
+    
   >
     <mat-icon>close</mat-icon>
   </button>

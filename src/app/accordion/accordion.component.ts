@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { fromEvent, of, Subject, Subscription } from 'rxjs';
 import { map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { colorRGBAction } from '../reducers/colorRGB';
+import { fontSizeAction } from '../reducers/fontSize';
 import { heightAction } from '../reducers/height';
 import { inputPlaceholderAction } from '../reducers/inputPlaceholder';
 
@@ -21,10 +22,12 @@ export class AccordionComponent implements OnInit {
   widthValue = '';
   heightValue = '';
   colorRGBValue = '';
+  fontSizeValue = '';
   inputPlaceholder = new FormControl('');
   width = new FormControl('');
   height = new FormControl('');
   colorRGB = new FormControl('');
+  fontSize = new FormControl('');
 
 
   constructor(private store: Store) {
@@ -50,6 +53,12 @@ export class AccordionComponent implements OnInit {
       .pipe(debounceTime(500), distinctUntilChanged())
       .subscribe((val) =>
         this.store.dispatch(colorRGBAction({ colorRGB : val }))
+      );
+      
+    this.fontSize.valueChanges
+      .pipe(debounceTime(500), distinctUntilChanged())
+      .subscribe((val) =>
+        this.store.dispatch(fontSizeAction({ fontSize : val }))
       );
   }
 

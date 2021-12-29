@@ -53,9 +53,19 @@
       </mat-form-field>
     </div>
     <!--  -->
+      <div>
+      <mat-form-field class="example-form-field " appearance="fill">
+        <mat-label>Font Size</mat-label>
+        <input matInput type="text" [formControl]='fontSize' [(ngModel)]="fontSizeValue">
+        <button *ngIf="fontSizeValue" matSuffix mat-icon-button aria-label="Clear" (click)="fontSizeValue=''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+    <!--  -->
     <app-font-weight-select></app-font-weight-select>
     <!--  -->
-    <div>
+    <div [ngStyle]="{marginTop: '10px'}">
       <mat-form-field class="example-form-field " appearance="fill">
         <mat-label>Color RGB</mat-label>
         <input matInput type="text" [formControl]='colorRGB' [(ngModel)]="colorRGBValue">
