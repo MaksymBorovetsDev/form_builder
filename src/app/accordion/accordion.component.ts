@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { fromEvent, of, Subject, Subscription } from 'rxjs';
 import { map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { colorRGBAction } from '../reducers/colorRGB';
 import { heightAction } from '../reducers/height';
 import { inputPlaceholderAction } from '../reducers/inputPlaceholder';
 
@@ -19,9 +20,11 @@ export class AccordionComponent implements OnInit {
   value = '';
   widthValue = '';
   heightValue = '';
+  colorRGBValue = '';
   inputPlaceholder = new FormControl('');
   width = new FormControl('');
   height = new FormControl('');
+  colorRGB = new FormControl('');
 
 
   constructor(private store: Store) {
@@ -41,6 +44,12 @@ export class AccordionComponent implements OnInit {
       .pipe(debounceTime(500), distinctUntilChanged())
       .subscribe((val) =>
         this.store.dispatch(heightAction({ height : val }))
+      );
+      
+    this.colorRGB.valueChanges
+      .pipe(debounceTime(500), distinctUntilChanged())
+      .subscribe((val) =>
+        this.store.dispatch(colorRGBAction({ colorRGB : val }))
       );
   }
 

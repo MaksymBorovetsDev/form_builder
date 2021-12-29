@@ -1,5 +1,6 @@
 import { ActionReducerMap, MetaReducer } from '@ngrx/store';
 import { environment } from '../../environments/environment';
+import { colorRGBReducer, COLOR_RGB_KEY, IColorRGB } from './colorRGB';
 import { fontWeightReducer, FONT_WEIGHT_KEY, IFontWeight } from './fontWeight';
 import { heightReducer, HEIGHT_REDUCER_KEY, IHeight } from './height';
 
@@ -15,6 +16,7 @@ export interface State {
   [WIDTH_REDUCER_KEY]: IWidth;
   [HEIGHT_REDUCER_KEY]: IHeight;
   [FONT_WEIGHT_KEY]: IFontWeight;
+  [COLOR_RGB_KEY]: IColorRGB;
 }
 
 export const reducers: ActionReducerMap<State> = {
@@ -22,6 +24,7 @@ export const reducers: ActionReducerMap<State> = {
   [WIDTH_REDUCER_KEY]: widthReducer,
   [HEIGHT_REDUCER_KEY]: heightReducer,
   [FONT_WEIGHT_KEY]: fontWeightReducer,
+  [COLOR_RGB_KEY]: colorRGBReducer,
 };
 
 export const metaReducers: MetaReducer<State>[] = !environment.production

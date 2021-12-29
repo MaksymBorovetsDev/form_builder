@@ -6,7 +6,7 @@
 >
   <mat-label>Clearable input</mat-label>
   <input
-    [ngStyle]="{ height: height$ | async , fontWeight: fontWeight$ | async}"
+    [ngStyle]="{ height: height$ | async , fontWeight: fontWeight$ | async, color: colorRGB$ | async}"
     matInput="matInput"
     type="text"
     [ngModel]="inputPlaceholder$ | async"

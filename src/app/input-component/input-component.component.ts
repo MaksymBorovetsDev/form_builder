@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { selectedColorRGB } from '../reducers/colorRGB';
 import { selectedFontWeight } from '../reducers/fontWeight';
 import { selectedHeight } from '../reducers/height';
 import {  inputPlaceholderAction, selectedInputPlaceholder } from '../reducers/inputPlaceholder';
@@ -16,6 +17,7 @@ export class InputComponentComponent implements OnInit {
   width$ = this.store.select(selectedWidth)
   height$ = this.store.select(selectedHeight)
   fontWeight$ = this.store.select(selectedFontWeight)
+  colorRGB$ = this.store.select(selectedColorRGB)
 
   clear(){
     this.store.dispatch(inputPlaceholderAction({inputPlaceholder: ''}))
