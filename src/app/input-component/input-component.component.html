@@ -1,26 +1,21 @@
 <mat-form-field
-  [ngStyle]="{
-    width: width$ | async,
-    borderStyle: borderStyle$ | async ,
-    borderWidth: borderWidth$ | async ,
-    borderRadius: borderRadius$ | async ,
-    padding: '25px'
-  }"
+
+  [ngStyle]="{'width': width, 'border-style': borderStyle, 'border-width': borderWidth, 'border-radius': borderRadius ,  'padding': '10px'}"
   class="example-form-field"
   appearance="fill"
   cdkDrag="cdkDrag"
 >
   <input
     [ngStyle]="{
-      height: height$ | async,
-      fontSize: fontSize$ | async,
-      fontWeight: fontWeight$ | async,
-      color: colorRGB$ | async,
-      padding: '10px'
+      'height': height,
+      'padding': '10px',
+      'font-weight': fontWeight,
+      'font-size': fontSize,
+      'color': colorRGB
     }"
     matInput="matInput"
     type="text"
-    [ngModel]="inputPlaceholder$ | async"
+    [ngModel]="placeholder"
   />
   <button
     *ngIf="inputPlaceholder$ | async"
@@ -32,3 +27,5 @@
     <mat-icon>close</mat-icon>
   </button>
 </mat-form-field>
+
+

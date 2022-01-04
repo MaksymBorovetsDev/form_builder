@@ -13,6 +13,8 @@ import {
   inputPlaceholderReducer,
   INPUT_PLACEHOLDER,
 } from './inputPlaceholder';
+import { ITems, itemsReducer, ITEMS_KEY } from './items';
+import { ISelectedComponent, selectedComponentReducer, SELECTED_COMPONENT_KEY } from './selectedComponent';
 import { IWidth, widthReducer, WIDTH_REDUCER_KEY } from './width';
 
 export interface State {
@@ -25,6 +27,8 @@ export interface State {
   [BORDER_STYLE_KEY]: IBorderStyle;
   [BORDER_WIDTH_KEY]: IBorderWidth;
   [BORDER_RADIUS_KEY]: IBorderRadius;
+  [SELECTED_COMPONENT_KEY]: ISelectedComponent;
+  [ITEMS_KEY]: ITems;
 }
 
 export const reducers: ActionReducerMap<State> = {
@@ -37,6 +41,8 @@ export const reducers: ActionReducerMap<State> = {
   [BORDER_STYLE_KEY]: borderStyleReducer,
   [BORDER_WIDTH_KEY]: borderWidthReducer,
   [BORDER_RADIUS_KEY]: borderRadiusReducer,
+  [SELECTED_COMPONENT_KEY]: selectedComponentReducer,
+  [ITEMS_KEY]: itemsReducer,
 };
 
 export const metaReducers: MetaReducer<State>[] = !environment.production

@@ -13,6 +13,7 @@ import { MatRadioModule} from '@angular/material/radio'
 import { MatInputModule } from '@angular/material/input'
 import { MatCheckboxModule } from '@angular/material/checkbox'
 import { MatChipsModule } from '@angular/material/chips'
+import { MatListModule } from '@angular/material/list'
 import { MatIconModule } from '@angular/material/icon'
 import { MatSelectModule } from '@angular/material/select';
 import { InputComponentComponent } from './input-component/input-component.component';
@@ -36,6 +37,7 @@ import { BorderStylesControlerComponent } from './border-styles-controler/border
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,9 +52,11 @@ import { BorderStylesControlerComponent } from './border-styles-controler/border
     StylesControlerSectionComponent,
     FontWeightSelectComponent,
     BorderStylesControlerComponent,
+
   ],
   imports: [
     BrowserModule,
+    MatListModule,
     BrowserAnimationsModule,
     DragDropModule,
     CdkAccordionModule,

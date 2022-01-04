@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { fontWeightAction } from '../reducers/fontWeight';
+import { editItemFontWeightAction, editItemPlaceholderAction } from '../reducers/items';
 
 @Component({
   selector: 'app-font-weight-select',
@@ -8,10 +9,12 @@ import { fontWeightAction } from '../reducers/fontWeight';
   styleUrls: ['./font-weight-select.component.scss']
 })
 export class FontWeightSelectComponent implements OnInit {
+  @Input() id: string = ''
 
   labelPosition: 'medium' | "bold" = 'medium';
-  dispatchValue(type : string){
-    this.store.dispatch(fontWeightAction({fontWeight: type}))
+
+  dispatchValue( type : string){
+    this.store.dispatch(editItemFontWeightAction({id: this.id, fontWeight: type}))
   }
   constructor(private store: Store) {
 

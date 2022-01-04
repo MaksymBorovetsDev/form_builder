@@ -1,10 +1,10 @@
 <div class="example-container">
   <h2>Make Styles HERE</h2>
   <app-accordion></app-accordion>
-</div>
+
 
 <div class="example-container">
-  <h2>Drag HERE</h2>
+  <h2 (click)="clg()">Drag HERE</h2>
 
   <div
     cdkDropList="cdkDropList"
@@ -13,48 +13,45 @@
     class="example-list"
     (cdkDropListDropped)="drop($event)"
   >
-    <div *ngFor="let item of todo; let i = index" cdkDrag="cdkDrag">
-      <div
+    <div
+      *ngFor="let item of data; let i = index"
+      cdkDrag="cdkDrag"
+      class="example-box"
+      (click)="setSelected(item.id)"
+      [ngStyle]="selectedId === item.id ? {'background-color' : 'lightgreen'} : {'background-color' : 'white'}"
+    >
+      <app-input-component
         *ngIf="item.name === 'input'"
-        class="example-box"
+        [id]="item.id"
+        [width]="item.width"
+        [height]="item.height"
+        [placeholder] = "item.placeholder"
+        [fontWeight] = "item.fontWeight"
+        [fontSize] = "item.fontSize"
+        [colorRGB] = "item.colorRGB"
+        [borderStyle] = "item.borderStyle"
+        [borderWidth] = "item.borderWidth"
+        [borderRadius] = "item.borderRadius"
+      ></app-input-component>
 
-      >
-        <app-input-component></app-input-component>
-      </div>
+      <app-button-component
+        *ngIf="item.name === 'button'"
+      ></app-button-component>
 
-      <div *ngIf="item.name === 'button'" class="example-box">
-        <app-button-component></app-button-component>
-      </div>
+      <app-textarea *ngIf="item.name === 'textarea'"></app-textarea>
 
-      <div
-        *ngIf="item.name === 'textarea'"
-        class="example-box"
+      <app-checkbox *ngIf="item.name === 'checkbox'"></app-checkbox>
 
-      >
-        <app-textarea></app-textarea>
-      </div>
-
-      <div
-        *ngIf="item.name === 'checkbox'"
-        class="example-box"
-
-      >
-        <app-checkbox></app-checkbox>
-      </div>
-
-      <div
+      <app-select-option
         *ngIf="item.name === 'select option'"
-        class="example-box"
-
-      >
-        <app-select-option></app-select-option>
-      </div>
+      ></app-select-option>
     </div>
   </div>
+
 </div>
 
 <div class="example-container">
-  <h2 >Take from HERE</h2>
+  <h2>Take from HERE</h2>
 
   <div
     cdkDropList="cdkDropList"
@@ -65,7 +62,7 @@
     (cdkDropListDropped)="drop($event)"
   >
     <div class="example-box" *ngFor="let item of done" cdkDrag="cdkDrag">
-      {{ item.name }}
+      {{ item }}
     </div>
   </div>
 </div>
