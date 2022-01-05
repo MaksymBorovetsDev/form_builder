@@ -1,4 +1,15 @@
-<mat-form-field appearance="fill">
-    <mat-label>Textarea</mat-label>
-    <textarea matInput></textarea>
-  </mat-form-field>
+<mat-form-field
+  appearance="fill"
+[ngStyle]="{    borderWidth: this.borderWidth,
+  borderRadius: this.borderRadius, width: this.width,borderStyle: this.borderStyle
+}"
+>
+  <mat-label>Textarea</mat-label>
+  <textarea matInput   [ngStyle]="{
+    color: colorRGB,
+    height: this.height,
+    fontWeight: this.fontWeight,
+    fontSize: this.fontSize,
+    colorRGB: this.colorRGB
+  }">{{placeholder}}</textarea>
+</mat-form-field>

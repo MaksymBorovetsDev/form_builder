@@ -22,69 +22,212 @@
       [attr.id]="'accordion-body-' + index"
       [attr.aria-labelledby]="'accordion-header-' + index"
     >
-    <div class="flex flex-col ">
-    <!--  -->
-
-      <div>
-      <mat-form-field class="example-form-field" appearance="fill">
-        <mat-label>Input Placeholder</mat-label>
-        <input matInput type="text" [formControl]='inputPlaceholder' [(ngModel)]="value">
-        <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">          <mat-icon>close</mat-icon>
-        </button>
-      </mat-form-field>
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perferendis
+      excepturi incidunt ipsum deleniti labore, tempore non nam doloribus
+      blanditiis veritatis illo autem iure aliquid ullam rem tenetur deserunt
+      velit culpa?
     </div>
-    <!--  -->
-      <div>
-      <mat-form-field class="example-form-field " appearance="fill">
-        <mat-label>Width</mat-label>
-        <input matInput type="text" [formControl]='width' [(ngModel)]="widthValue">
-        <button *ngIf="widthValue" matSuffix mat-icon-button aria-label="Clear" (click)="widthValue=''">
-          <mat-icon>close</mat-icon>
-        </button>
-      </mat-form-field>
-    </div>
-    <!--  -->
-      <div>
-      <mat-form-field class="example-form-field " appearance="fill">
-        <mat-label>Height</mat-label>
-        <input matInput type="text" [formControl]='height' [(ngModel)]="heightValue">
-        <button *ngIf="heightValue" matSuffix mat-icon-button aria-label="Clear" (click)="heightValue=''">
-          <mat-icon>close</mat-icon>
-        </button>
-      </mat-form-field>
-    </div>
-    <!--  -->
-      <div>
-      <mat-form-field class="example-form-field " appearance="fill">
-        <mat-label>Font Size</mat-label>
-        <input matInput type="text" [formControl]='fontSize' [(ngModel)]="fontSizeValue">
-        <button *ngIf="fontSizeValue" matSuffix mat-icon-button aria-label="Clear" (click)="fontSizeValue=''">
-          <mat-icon>close</mat-icon>
-        </button>
-      </mat-form-field>
-    </div>
-    <!--  -->
-    <app-font-weight-select [id]='selectedId' ></app-font-weight-select>
-    <!--  -->
-    <div [ngStyle]="{marginTop: '10px'}">
-      <mat-form-field class="example-form-field " appearance="fill">
-        <mat-label>Color RGB</mat-label>
-        <input matInput type="text" [formControl]='colorRGB' [(ngModel)]="colorRGBValue">
-        <button *ngIf="colorRGBValue" matSuffix mat-icon-button aria-label="Clear" (click)="colorRGBValue=''">
-          <mat-icon>close</mat-icon>
-        </button>
-      </mat-form-field>
-    </div>
-    <!--  -->
-    <app-border-styles-controler  [id]='selectedId' ></app-border-styles-controler>
-
-    <!--  -->
-
-    
-    </div>
-
-    </div>
-
-
   </cdk-accordion-item>
+  <cdk-accordion-item
+    #accordionItem="cdkAccordionItem"
+    class="example-accordion-item"
+    role="button"
+    tabindex="0"
+    [attr.aria-expanded]="accordionItem.expanded"
+  >
+    <div class="example-accordion-item-header" (click)="accordionItem.toggle()">
+      Selected Item Controls
+
+      <span class="example-accordion-item-description"> </span>
+    </div>
+
+    <div
+      class="example-accordion-item-body"
+      role="region"
+      [style.display]="selectedId.length > 1 ? '' : 'none'"
+    >
+      <div class="flex flex-col">
+        <form action="" [formGroup]="stylesForm">
+          <!--  -->
+
+          <div>
+            <mat-form-field class="example-form-field" appearance="fill">
+              <mat-label>Input Placeholder</mat-label>
+              <input
+                matInput
+                type="text"
+                formControlName="inputPlaceholder"
+                [(ngModel)]="placeholderValue"
+              />
+              <button
+                *ngIf="placeholderValue"
+                matSuffix
+                mat-icon-button
+                aria-label="Clear"
+                (click)="placeholderValue = ''"
+              >
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+          <!--  -->
+          <div>
+            <mat-form-field class="example-form-field" appearance="fill">
+              <mat-label>Width</mat-label>
+              <input
+                matInput
+                type="text"
+                formControlName="width"
+                [(ngModel)]="widthValue"
+              />
+
+            </mat-form-field>
+          </div>
+          <!--  -->
+          <div>
+            <mat-form-field class="example-form-field" appearance="fill">
+              <mat-label>Height</mat-label>
+              <input
+                matInput
+                type="text"
+                formControlName="height"
+                placeholder="heightValue"
+                [(ngModel)]="heightValue"
+              />
+            </mat-form-field>
+          </div>
+          <!--  -->
+          <div>
+            <mat-form-field class="example-form-field" appearance="fill">
+              <mat-label>Font Size</mat-label>
+              <input
+                matInput
+                type="text"
+                formControlName="fontSize"
+                [(ngModel)]="fontSizeValue"
+              />
+              <button
+                *ngIf="fontSizeValue"
+                matSuffix
+                mat-icon-button
+                aria-label="Clear"
+                (click)="fontSizeValue = ''"
+              >
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+          <!-- FONT WEIGHT -->
+          <section>
+            <label class="example-margin">Font Weight </label>
+            <mat-radio-group
+              class="itemsContainer"
+              aria-label="Select an option"
+            >
+              <mat-radio-button value="1" (click)="dispatchFontWeight('lighter')"
+                >Lighter</mat-radio-button
+              >
+              <mat-radio-button value="2" (click)="dispatchFontWeight('normal')">
+                Normal
+              </mat-radio-button>
+              <mat-radio-button value="3" (click)="dispatchFontWeight('bold')">
+                Bold
+              </mat-radio-button>
+            </mat-radio-group>
+          </section>
+          <!--  -->
+
+          <div [ngStyle]="{ marginTop: '10px' }">
+            <mat-form-field class="example-form-field" appearance="fill">
+              <mat-label>Color RGB</mat-label>
+              <input
+                matInput
+                type="text"
+                formControlName="colorRGB"
+                [(ngModel)]="colorRGBValue"
+              />
+              <button
+                *ngIf="colorRGBValue"
+                matSuffix
+                mat-icon-button
+                aria-label="Clear"
+                (click)="colorRGBValue = ''"
+              >
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+          <!--  -->
+          <!-- BORDER CONTROL -->
+          <h3 class="borderStylesControlerContainerTitle">Border Styles Controler</h3>
+          <div class="borderStylesControlerContainer">
+            <div>
+              <label id="example-radio-group-label">Border Style</label>
+              <mat-radio-group
+                aria-labelledby="example-radio-group-label"
+                class="example-radio-group"
+              >
+                <mat-radio-button
+                  (click)="setBorderStyle('solid')"
+                  class="example-radio-button"
+                  value="1"
+                >
+                  Solid
+                </mat-radio-button>
+                <mat-radio-button
+                  (click)="setBorderStyle('dashed')"
+                  class="example-radio-button"
+                  value="2"
+                >
+                  Dashed
+                </mat-radio-button>
+                <mat-radio-button
+                  class="example-radio-button"
+                  (click)="setBorderStyle('dotted')"
+                  value="3"
+                >
+                  Dotted
+                </mat-radio-button>
+                <mat-radio-button
+                  class="example-radio-button"
+                  (click)="setBorderStyle('none')"
+                  value="5"
+                >
+                  None
+                </mat-radio-button>
+              </mat-radio-group>
+            </div>
+            <div class="inputContainer">
+              <!--  -->
+              <p>Set Border Width</p>
+              <mat-form-field class="example-form-field" appearance="fill">
+                <input
+                  matInput
+                  type="text"
+                  formControlName="borderWidth"
+                  [(ngModel)]="borderWidthValue"
+                />
+              </mat-form-field>
+              <!--  -->
+              <p>Set Border Radius</p>
+
+              <mat-form-field class="example-form-field" appearance="fill">
+                <input
+                  matInput
+                  type="text"
+                  formControlName="borderRadius"
+                  [(ngModel)]="borderRadiusValue"
+                />
+              </mat-form-field>
+              <!--  -->
+            </div>
+          </div>
+
+          <!--  -->
+        </form>
+      </div>
+    </div>
+  </cdk-accordion-item>
+
+  <cdk-accordion-item></cdk-accordion-item>
 </cdk-accordion>

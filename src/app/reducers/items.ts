@@ -27,36 +27,24 @@ export const addItemAction = createAction(
     borderRadius: string;
   }>()
 );
-// //////
 
-export const editItemWidthAction = createAction(
-  '[ITEMS_KEY] edit item width',
-  props<{ id: string; width: string }>()
+export const editItemStylesAction = createAction(
+  '[ITEMS_KEY] edit item styles',
+  props<{
+    id: string;
+    width: string;
+    height: string;
+    placeholder: string;
+    fontSize: string;
+    colorRGB: string;
+    borderWidth: string;
+    borderRadius: string;
+  }>()
 );
 
-export const editItemHeightAction = createAction(
-  '[ITEMS_KEY] edit item height',
-  props<{ id: string; height: string }>()
-);
-
-export const editItemPlaceholderAction = createAction(
-  '[ITEMS_KEY] edit item placeholder',
-  props<{ id: string; placeholder: string }>()
-);
-
-export const editItemFontWeightAction = createAction(
+export const editFontWeiAction = createAction(
   '[ITEMS_KEY] edit item fontWeight',
   props<{ id: string; fontWeight: string }>()
-);
-
-export const editItemFontSizeAction = createAction(
-  '[ITEMS_KEY] edit item fontSize',
-  props<{ id: string; fontSize: string }>()
-);
-
-export const editItemColorRGBAction = createAction(
-  '[ITEMS_KEY] edit item colorRGB',
-  props<{ id: string; colorRGB: string }>()
 );
 
 
@@ -65,20 +53,7 @@ export const editBorderStyleAction = createAction(
   props<{ id: string; borderStyle: string }>()
 );
 
-
-export const editBorderWidthAction = createAction(
-  '[ITEMS_KEY] edit item borderWidth',
-  props<{ id: string; borderWidth: string }>()
-);
-
-
-
-export const editBorderRadiusAction = createAction(
-  '[ITEMS_KEY] edit item borderRadius',
-  props<{ id: string; borderRadius: string }>()
-);
-
-
+// //////
 
 
 
@@ -97,6 +72,7 @@ export interface ITem {
 }
 
 export interface ITems {
+
   items: ITem[];
 }
 
@@ -127,74 +103,32 @@ export const itemsReducer = createReducer(
     ],
   })),
 
-  on(editItemWidthAction, (state, action) => ({
+  on(editItemStylesAction, (state, action) => ({
     ...state,
     items: state.items.map((item) =>
       item.id === action.id
         ? {
             ...item,
             width: action.width + 'px',
-          }
-        : item
-    ),
-  })),
-
-  on(editItemHeightAction, (state, action) => ({
-    ...state,
-    items: state.items.map((item) =>
-      item.id === action.id
-        ? {
-            ...item,
             height: action.height + 'px',
-          }
-        : item
-    ),
-  })),
-
-  on(editItemPlaceholderAction, (state, action) => ({
-    ...state,
-    items: state.items.map((item) =>
-      item.id === action.id
-        ? {
-            ...item,
             placeholder: action.placeholder,
+            fontSize: action.fontSize + 'px',
+            colorRGB: action.colorRGB,
+            borderWidth: action.borderWidth + 'px',
+            borderRadius: action.borderRadius + 'px',
           }
         : item
     ),
   })),
 
-  on(editItemFontWeightAction, (state, action) => ({
+
+  on(editFontWeiAction, (state, action) => ({
     ...state,
     items: state.items.map((item) =>
       item.id === action.id
         ? {
             ...item,
             fontWeight: action.fontWeight,
-          }
-        : item
-    ),
-  })),
-
-  on(editItemFontSizeAction, (state, action) => ({
-    ...state,
-    items: state.items.map((item) =>
-      item.id === action.id
-        ? {
-            ...item,
-            fontSize: action.fontSize + 'px',
-          }
-        : item
-    ),
-  })),
-
-
-  on(editItemColorRGBAction, (state, action) => ({
-    ...state,
-    items: state.items.map((item) =>
-      item.id === action.id
-        ? {
-            ...item,
-            colorRGB: action.colorRGB,
           }
         : item
     ),
@@ -208,30 +142,6 @@ export const itemsReducer = createReducer(
         ? {
             ...item,
             borderStyle: action.borderStyle,
-          }
-        : item
-    ),
-  })),
-
-  on(editBorderWidthAction, (state, action) => ({
-    ...state,
-    items: state.items.map((item) =>
-      item.id === action.id
-        ? {
-            ...item,
-            borderWidth: action.borderWidth + 'px',
-          }
-        : item
-    ),
-  })),
-
-  on(editBorderRadiusAction, (state, action) => ({
-    ...state,
-    items: state.items.map((item) =>
-      item.id === action.id
-        ? {
-            ...item,
-            borderRadius: action.borderRadius + 'px',
           }
         : item
     ),

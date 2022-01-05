@@ -30,8 +30,6 @@ import { EffectsModule } from '@ngrx/effects';
 import { AppEffects } from './app.effects';
 import { AccordionComponent } from './accordion/accordion.component';
 import { StylesControlerSectionComponent } from './styles-controler-section/styles-controler-section.component';
-import { FontWeightSelectComponent } from './font-weight-select/font-weight-select.component';
-import { BorderStylesControlerComponent } from './border-styles-controler/border-styles-controler.component';
 
 
 
@@ -50,8 +48,7 @@ import { BorderStylesControlerComponent } from './border-styles-controler/border
     SelectOptionComponent,
     AccordionComponent,
     StylesControlerSectionComponent,
-    FontWeightSelectComponent,
-    BorderStylesControlerComponent,
+
 
   ],
   imports: [

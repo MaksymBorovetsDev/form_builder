@@ -1,8 +1,10 @@
 <div class="example-container">
   <h2>Make Styles HERE</h2>
-  <app-accordion></app-accordion>
+  <app-accordion
 
-
+    [selectedId]="selectedId"
+  ></app-accordion>
+</div>
 <div class="example-container">
   <h2 (click)="clg()">Drag HERE</h2>
 
@@ -17,28 +19,52 @@
       *ngFor="let item of data; let i = index"
       cdkDrag="cdkDrag"
       class="example-box"
-      (click)="setSelected(item.id)"
-      [ngStyle]="selectedId === item.id ? {'background-color' : 'lightgreen'} : {'background-color' : 'white'}"
+      (click)="dispatchSelectedCompoent(item.id, item.width, item.height, item.placeholder)"
+      [ngStyle]="
+        selectedId === item.id
+          ? { 'background-color': 'lightgreen' }
+          : { 'background-color': 'white' }
+      "
     >
       <app-input-component
         *ngIf="item.name === 'input'"
         [id]="item.id"
         [width]="item.width"
         [height]="item.height"
-        [placeholder] = "item.placeholder"
-        [fontWeight] = "item.fontWeight"
-        [fontSize] = "item.fontSize"
-        [colorRGB] = "item.colorRGB"
-        [borderStyle] = "item.borderStyle"
-        [borderWidth] = "item.borderWidth"
-        [borderRadius] = "item.borderRadius"
+        [placeholder]="item.placeholder"
+        [fontWeight]="item.fontWeight"
+        [fontSize]="item.fontSize"
+        [colorRGB]="item.colorRGB"
+        [borderStyle]="item.borderStyle"
+        [borderWidth]="item.borderWidth"
+        [borderRadius]="item.borderRadius"
       ></app-input-component>
 
       <app-button-component
         *ngIf="item.name === 'button'"
+        [width]="item.width"
+        [height]="item.height"
+        [placeholder]="item.placeholder"
+        [fontWeight]="item.fontWeight"
+        [fontSize]="item.fontSize"
+        [colorRGB]="item.colorRGB"
+        [borderStyle]="item.borderStyle"
+        [borderWidth]="item.borderWidth"
+        [borderRadius]="item.borderRadius"
       ></app-button-component>
 
-      <app-textarea *ngIf="item.name === 'textarea'"></app-textarea>
+      <app-textarea
+        *ngIf="item.name === 'textarea'"
+        [width]="item.width"
+        [height]="item.height"
+        [placeholder]="item.placeholder"
+        [fontWeight]="item.fontWeight"
+        [fontSize]="item.fontSize"
+        [colorRGB]="item.colorRGB"
+        [borderStyle]="item.borderStyle"
+        [borderWidth]="item.borderWidth"
+        [borderRadius]="item.borderRadius"
+      ></app-textarea>
 
       <app-checkbox *ngIf="item.name === 'checkbox'"></app-checkbox>
 
@@ -47,7 +73,6 @@
       ></app-select-option>
     </div>
   </div>
-
 </div>
 
 <div class="example-container">

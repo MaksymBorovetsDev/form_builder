@@ -1,16 +1,28 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import {
+  Component,
+  OnInit,
+  OnChanges,
+  SimpleChanges,
+  Input,
+} from '@angular/core';
+import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { fromEvent, of, Subject, Subscription } from 'rxjs';
-import { map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { colorRGBAction } from '../reducers/colorRGB';
-import { fontSizeAction } from '../reducers/fontSize';
-import { heightAction } from '../reducers/height';
-import { inputPlaceholderAction } from '../reducers/inputPlaceholder';
-import { addItemAction, editItemColorRGBAction, editItemFontSizeAction, editItemHeightAction, editItemPlaceholderAction, editItemWidthAction, ITem, itemsSelector } from '../reducers/items';
-import { selectedIdSelector } from '../reducers/selectedComponent';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  map,
+  filter,
+  switchMapTo,
+} from 'rxjs/operators';
 
-import { widthAction } from '../reducers/width';
+import { editItemStylesAction, ITem, itemsSelector } from '../reducers/items';
+
+import {
+  selectedHeightSelector,
+  selectedIDSelector,
+  selectedPlaceholderSelector,
+  selectedWidthSelector,
+} from '../reducers/selectedComponent';
 
 @Component({
   selector: 'app-accordion',
@@ -18,68 +30,102 @@ import { widthAction } from '../reducers/width';
   styleUrls: ['./accordion.component.scss'],
 })
 export class AccordionComponent implements OnInit {
-  items = ['Styles Controler'];
+  @Input() selectedId: string = '';
+  @Input() name: string = '';
+
+  items = ['Global Controls'];
+  borderStyle: string = 'none';
+  borderWidthValue = '';
+  fontWeight: string = 'normal';
+  borderRadiusValue = '';
   expandedIndex = 0;
-  value = '';
-  widthValue = '';
+  placeholderValue = '';
   heightValue = '';
+  widthValue = '';
   colorRGBValue = '';
   fontSizeValue = '';
-  inputPlaceholder = new FormControl('');
-  width = new FormControl('');
-  height = new FormControl('');
-  colorRGB = new FormControl('');
-  fontSize = new FormControl('');
-  selectedId = ''
-  itemData : ITem[]= []
 
-
-  constructor(private store: Store) {
-    // this.inputPlaceholder.valueChanges
-    //   .pipe(debounceTime(500), distinctUntilChanged())
-    //   .subscribe((val) =>
-    //     this.store.dispatch(inputPlaceholderAction({ inputPlaceholder: val }))
-    //   );
-
-    this.width.valueChanges
-      .pipe(debounceTime(500), distinctUntilChanged())
-      .subscribe((val) =>
-        this.store.dispatch(editItemWidthAction({ id: this.selectedId, width: val}))
-      );
-
-    this.height.valueChanges
-      .pipe(debounceTime(500), distinctUntilChanged())
-      .subscribe((val) =>
-        this.store.dispatch(editItemHeightAction({ id: this.selectedId, height: val}))
-      );
-      
-
-    this.inputPlaceholder.valueChanges
-      .pipe(debounceTime(500), distinctUntilChanged())
-      .subscribe((val) =>
-        this.store.dispatch(editItemPlaceholderAction({ id: this.selectedId, placeholder: val}))
-      );
-      
-
-      
-    this.colorRGB.valueChanges
-      .pipe(debounceTime(500), distinctUntilChanged())
-      .subscribe((val) =>
-        this.store.dispatch(editItemColorRGBAction({ id: this.selectedId, colorRGB : val }))
-      );
-      
-    this.fontSize.valueChanges
-      .pipe(debounceTime(500), distinctUntilChanged())
-      .subscribe((val) =>
-        this.store.dispatch(editItemFontSizeAction({ id: this.selectedId, fontSize : val }))
-      );
+  setBorderStyle(title: string) {
+    this.borderStyle = title;
   }
 
-  ngOnInit(
-  ) {
+  dispatchFontWeight(title: string) {}
 
-    this.store.select(selectedIdSelector).subscribe(data => {this.selectedId = data} )
+  stylesForm = new FormGroup({
+    height: new FormControl(),
+    width: new FormControl(),
+    colorRGB: new FormControl(),
+    fontSize: new FormControl(),
+    inputPlaceholder: new FormControl(),
+    borderRadius: new FormControl(),
+    borderWidth: new FormControl(),
+  });
+
+  constructor(private store: Store) {}
+
+  ngOnInit() {
+    this.stylesForm.valueChanges
+      .pipe(debounceTime(500), distinctUntilChanged())
+      .subscribe((val) =>
+        this.store.dispatch(
+          editItemStylesAction({
+            id: this.selectedId,
+            width: val.width,
+            height: val.height,
+            placeholder: val.inputPlaceholder,
+            fontSize: val.fontSize,
+            colorRGB: val.colorRGB,
+            borderWidth: val.borderWidth,
+            borderRadius: val.borderRadius,
+          })
+        )
+      );
+
+    // this.store.select(selectedWidthSelector).subscribe((data) => {
+    //   this.widthValue = data.slice(0, -2);
+    //   this.stylesForm.patchValue({
+    //     height: this.heightValue,
+    //     width: this.widthValue,
+    //     colorRGB: this.colorRGBValue,
+    //     fontSize: '',
+    //     inputPlaceholder: '',
+    //     borderRadius: '',
+    //     borderWidth: '',
+    //   })
+    //   console.log('1')
+    // });
+
+    this.store
+      .select(selectedIDSelector)
+      .pipe(switchMapTo(this.store.select(selectedWidthSelector)))
+      .subscribe((data) => {
+        this.widthValue = data.slice(0, -2);
+      });
+
+    // this.store.select(selectedWidthSelector).subscribe((data) => {
+    //   this.widthValue = data.slice(0, -2);
+    // });
+
+    this.store.select(selectedHeightSelector).subscribe((data) => {
+      this.heightValue = data.slice(0, -2);
+    });
+
+    this.store.select(selectedPlaceholderSelector).subscribe((data) => {
+      this.placeholderValue = data;
+    });
   }
 }
 
-
+// this.store
+//   .select(itemsSelector)
+//   .pipe(
+//     map((dataArray: ITem[]) =>
+//       dataArray.filter(
+//         (dataObject: any) => dataObject.id === this.selectedId
+//       )
+//     )
+//     map(())
+//   )
+//   .subscribe((data) => {
+//     this.widthValue = data.map(i => i.width).toString();
+//   });

@@ -1,1 +1,18 @@
-<button class="button" mat-raised-button="mat-raised-button" cdkDrag="cdkDrag">Click Me</button>
+<button
+  class="button"
+  [ngStyle]="{
+    color: colorRGB,
+    width: this.width,
+    height: this.height,
+    fontWeight: this.fontWeight,
+    fontSize: this.fontSize,
+    colorRGB: this.colorRGB,
+    borderStyle: this.borderStyle,
+    borderWidth: this.borderWidth,
+    borderRadius: this.borderRadius
+  }"
+  mat-raised-button="mat-raised-button"
+  cdkDrag="cdkDrag"
+>
+  {{ placeholder || "Click Me" }}
+</button>

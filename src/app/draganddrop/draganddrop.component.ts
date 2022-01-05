@@ -7,15 +7,8 @@ import {
 } from '@angular/cdk/drag-drop';
 import { Store } from '@ngrx/store';
 import { v4 as uuidv4 } from 'uuid';
-import {
-  initialState,
-  isSelectedAction,
-  isSelectedSelector,
-  selectedIdSelector,
-  SELECTED_COMPONENT_KEY,
-  setSelectedIdAction,
-} from '../reducers/selectedComponent';
-import { addItemAction, ITem, ITems, itemsSelector } from '../reducers/items';
+import { ISelectedConfigs, selectedIDSelector, setSelectedConfigAction } from '../reducers/selectedComponent';
+import { addItemAction, ITem, itemsSelector } from '../reducers/items';
 
 export interface DragAndDropData {
   name: string;
@@ -29,28 +22,30 @@ export interface DragAndDropData {
 })
 export class DraganddropComponent implements OnInit {
   value: string = 'Clear me';
+  selectedWidthValue = '';
+  selectedId: string = '';
+  selectedComponentConfig :ISelectedConfigs[] = []
 
-  setSelected(id: string) {
-    this.store.dispatch(setSelectedIdAction({ selectedId: id }));
-    this.store.dispatch(isSelectedAction({ isSelected: true }));
+  dispatchSelectedCompoent(id: string, width: string, height: string, placeholder: string) {
+    this.store.dispatch(
+      setSelectedConfigAction({
+        selectedId: id,
+        selectedWidth: width,
+        selectedHeight: height,
+        selectedPlaceholder : placeholder
+      })
+    );
+  }
+  clg(){
+    console.log(this.selectedId)
   }
 
-  isSelected: boolean = true;
-  selectedId: string = '';
-clg(){
-  console.log(this.todo)
-}
-  
+
 
   done: string[] = ['input', 'button', 'textarea', 'checkbox', 'select option'];
 
   data: ITem[] = [];
   todo: any[] = [];
-  newData: any[] = []
-
-  drop2(event: CdkDragDrop<any>) {
-    moveItemInArray(this.newData, event.previousIndex, event.currentIndex);
-  }
 
   drop(event: CdkDragDrop<any>) {
     if (event.previousContainer === event.container) {
@@ -73,8 +68,8 @@ clg(){
         addItemAction({
           id: uuidv4(),
           name: titleDND,
-          width: '235px',
-          height: '20px',
+          width: '205px',
+          height: '40px',
           placeholder: '',
           fontWeight: 'normal',
           fontSize: '13px',
@@ -85,25 +80,27 @@ clg(){
         })
       );
 
-      this.newData = this.data.map(item => item.id)
-
-      
-        console.log(this.newData)
 
     }
   }
 
   ngOnInit(): void {
-    this.store.select(isSelectedSelector).subscribe((data) => {
-      this.isSelected = data;
-    });
-    this.store.select(selectedIdSelector).subscribe((data) => {
-      this.selectedId = data;
-    });
+
     this.store.select(itemsSelector).subscribe((data) => {
       this.data = data;
     });
+
+    this.store.select(selectedIDSelector).subscribe((data) => {
+      this.selectedId = data;
+    });
+
+
   }
 
   constructor(private store: Store) {}
 }
+
+
+
+
+
