@@ -17,6 +17,11 @@ export const setSelectedConfigAction = createAction(
     selectedWidth: string;
     selectedHeight: string;
     selectedPlaceholder: string;
+    fontSize: string;
+    colorRGB: string;
+    borderWidth: string;
+    borderRadius: string;
+    borderStyle: string;
   }>()
 );
 
@@ -25,6 +30,11 @@ export interface ISelectedConfigs {
   selectedWidth: string;
   selectedHeight: string;
   selectedPlaceholder: string;
+  fontSize: string;
+  colorRGB: string;
+  borderWidth: string;
+  borderRadius: string;
+  borderStyle: string;
 }
 
 export const initialState: ISelectedConfigs = {
@@ -32,6 +42,11 @@ export const initialState: ISelectedConfigs = {
   selectedWidth: '',
   selectedHeight: '',
   selectedPlaceholder: '',
+  fontSize: '',
+  colorRGB: '',
+  borderWidth: '',
+  borderRadius: '',
+  borderStyle: '',
 };
 
 export const selectedComponentReducer = createReducer(
@@ -44,6 +59,11 @@ export const selectedComponentReducer = createReducer(
     selectedWidth: action.selectedWidth,
     selectedHeight: action.selectedHeight,
     selectedPlaceholder: action.selectedPlaceholder,
+    fontSize: action.fontSize,
+    colorRGB: action.colorRGB,
+    borderWidth: action.borderWidth,
+    borderRadius: action.borderRadius,
+    borderStyle: action.borderStyle,
   }))
 );
 
@@ -69,4 +89,29 @@ export const selectedHeightSelector = createSelector(
 export const selectedPlaceholderSelector = createSelector(
   featureSelector,
   (state) => state.selectedPlaceholder
+);
+
+export const selectedFontSizeSelector = createSelector(
+  featureSelector,
+  (state) => state.fontSize
+);
+
+export const selectedColorRGBSelector = createSelector(
+  featureSelector,
+  (state) => state.colorRGB
+);
+
+export const selectedBorderWidthSelector = createSelector(
+  featureSelector,
+  (state) => state.borderWidth
+);
+
+export const selectedBorderRadiusSelector = createSelector(
+  featureSelector,
+  (state) => state.borderRadius
+);
+
+export const selectedBorderStyleSelector = createSelector(
+  featureSelector,
+  (state) => state.borderStyle
 );

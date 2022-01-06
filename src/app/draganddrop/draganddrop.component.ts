@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {
   CdkDragDrop,
   copyArrayItem,
@@ -7,8 +7,20 @@ import {
 } from '@angular/cdk/drag-drop';
 import { Store } from '@ngrx/store';
 import { v4 as uuidv4 } from 'uuid';
-import { ISelectedConfigs, selectedIDSelector, setSelectedConfigAction } from '../reducers/selectedComponent';
+import {
+  ISelectedConfigs,
+  selectedIDSelector,
+  setSelectedConfigAction,
+} from '../reducers/selectedComponent';
 import { addItemAction, ITem, itemsSelector } from '../reducers/items';
+import { ISelectedComponentStyles } from './draganddrop.interface';
+// portal >
+import { ComponentPortal, DomPortalHost } from '@angular/cdk/portal';
+// < portal 
+
+
+
+
 
 export interface DragAndDropData {
   name: string;
@@ -21,26 +33,23 @@ export interface DragAndDropData {
   styleUrls: ['./draganddrop.component.scss'],
 })
 export class DraganddropComponent implements OnInit {
-  value: string = 'Clear me';
-  selectedWidthValue = '';
   selectedId: string = '';
-  selectedComponentConfig :ISelectedConfigs[] = []
 
-  dispatchSelectedCompoent(id: string, width: string, height: string, placeholder: string) {
+  dispatchSelectedCompoent(item: ISelectedComponentStyles) {
     this.store.dispatch(
       setSelectedConfigAction({
-        selectedId: id,
-        selectedWidth: width,
-        selectedHeight: height,
-        selectedPlaceholder : placeholder
+        selectedId: item.id,
+        selectedWidth: item.width,
+        selectedHeight: item.height,
+        selectedPlaceholder: item.placeholder,
+        fontSize: item.fontSize,
+        colorRGB: item.colorRGB,
+        borderWidth: item.borderWidth,
+        borderRadius: item.borderRadius,
+        borderStyle: item.borderStyle,
       })
     );
   }
-  clg(){
-    console.log(this.selectedId)
-  }
-
-
 
   done: string[] = ['input', 'button', 'textarea', 'checkbox', 'select option'];
 
@@ -75,17 +84,21 @@ export class DraganddropComponent implements OnInit {
           fontSize: '13px',
           colorRGB: 'black',
           borderStyle: 'none',
-          borderWidth: '1px',
+          borderWidth: '',
           borderRadius: '',
         })
       );
-
-
     }
   }
+  //  PORTAL >
+
+  readonly components = [ChildOneComponent, ChildTwoComponent, ChildThreeComponent];
+  
+  section1! : ComponentPortal<any> 
+
+  // < portal
 
   ngOnInit(): void {
-
     this.store.select(itemsSelector).subscribe((data) => {
       this.data = data;
     });
@@ -95,12 +108,35 @@ export class DraganddropComponent implements OnInit {
     });
 
 
+    // portal>
+    this.section1 = new ComponentPortal(this.components[0])
+ // <portal
   }
 
   constructor(private store: Store) {}
 }
 
 
+// portal >
+@Component({
+  selector: 'app-child-one',
+  template: `<p>I am child one.</p>`
+})
+export class ChildOneComponent  {
+}
 
+@Component({
+  selector: 'app-child-two',
+  template: `<p>I am child two.</p>`
+})
+export class ChildTwoComponent  {
+}
 
+@Component({
+  selector: 'app-child-two',
+  template: `<p>I am child three.</p>`
+})
+export class ChildThreeComponent  {
+}
 
+// < portal

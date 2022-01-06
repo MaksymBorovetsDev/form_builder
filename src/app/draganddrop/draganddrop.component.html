@@ -1,3 +1,7 @@
+
+
+    <ng-template [cdkPortalOutlet]="section1"></ng-template>
+
 <div class="example-container">
   <h2>Make Styles HERE</h2>
   <app-accordion
@@ -5,8 +9,9 @@
     [selectedId]="selectedId"
   ></app-accordion>
 </div>
+
 <div class="example-container">
-  <h2 (click)="clg()">Drag HERE</h2>
+  <h2 >Drag HERE</h2>
 
   <div
     cdkDropList="cdkDropList"
@@ -19,7 +24,7 @@
       *ngFor="let item of data; let i = index"
       cdkDrag="cdkDrag"
       class="example-box"
-      (click)="dispatchSelectedCompoent(item.id, item.width, item.height, item.placeholder)"
+      (click)="dispatchSelectedCompoent(item)"
       [ngStyle]="
         selectedId === item.id
           ? { 'background-color': 'lightgreen' }
@@ -72,3 +77,5 @@
     </div>
   </div>
 </div>
+
+

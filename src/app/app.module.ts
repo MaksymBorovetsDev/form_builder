@@ -8,6 +8,7 @@ import { DraganddropComponent } from './draganddrop/draganddrop.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {DragDropModule} from '@angular/cdk/drag-drop'
 import {CdkAccordionModule} from '@angular/cdk/accordion'
+import {PortalModule} from '@angular/cdk/portal';
 import { MatButtonModule } from '@angular/material/button'
 import { MatRadioModule} from '@angular/material/radio'
 import { MatInputModule } from '@angular/material/input'
@@ -56,6 +57,7 @@ import { StylesControlerSectionComponent } from './styles-controler-section/styl
     MatListModule,
     BrowserAnimationsModule,
     DragDropModule,
+    PortalModule,
     CdkAccordionModule,
     MatButtonModule,
     MatInputModule,
