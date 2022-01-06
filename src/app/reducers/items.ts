@@ -42,7 +42,7 @@ export const editItemStylesAction = createAction(
   }>()
 );
 
-export const editFontWeiAction = createAction(
+export const editFontWeightAction = createAction(
   '[ITEMS_KEY] edit item fontWeight',
   props<{ id: string; fontWeight: string }>()
 );
@@ -122,7 +122,7 @@ export const itemsReducer = createReducer(
   })),
 
 
-  on(editFontWeiAction, (state, action) => ({
+  on(editFontWeightAction, (state, action) => ({
     ...state,
     items: state.items.map((item) =>
       item.id === action.id

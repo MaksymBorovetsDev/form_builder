@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { IButtonStyles } from './button-component.interface';
 
 @Component({
   selector: 'app-button-component',
@@ -7,15 +8,19 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ButtonComponentComponent implements OnInit {
 
-  @Input() width: string = '160px'
-  @Input() height: string = '50px'
-  @Input() placeholder: string = ''
-  @Input() fontWeight: string = 'normal'
-  @Input() fontSize: string = '5px'
-  @Input() colorRGB: string = 'black'
-  @Input() borderStyle: string = 'none'
-  @Input() borderWidth: string = '1px'
-  @Input() borderRadius: string = '1px'
+  @Input() stylesObj : IButtonStyles = {
+    width: '160px',
+    height: '50px',
+    placeholder: '',
+    fontWeight: 'normal',
+    fontSize: '5px',
+    colorRGB: 'black',
+    borderStyle: 'none',
+    borderWidth: '1px',
+    borderRadius: '1px',
+
+
+  };
 
   constructor() { }
 

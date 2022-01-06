@@ -15,7 +15,7 @@ import {
   switchMapTo,
 } from 'rxjs/operators';
 
-import { editItemStylesAction, ITem, itemsSelector } from '../reducers/items';
+import { editBorderStyleAction, editFontWeightAction, editItemStylesAction, ITem, itemsSelector } from '../reducers/items';
 
 import {
   selectedHeightSelector,
@@ -46,10 +46,12 @@ export class AccordionComponent implements OnInit {
   fontSizeValue = '';
 
   setBorderStyle(title: string) {
-    this.borderStyle = title;
+    this.store.dispatch(editBorderStyleAction({ id: this.selectedId , borderStyle: title}))
   }
 
-  dispatchFontWeight(title: string) {}
+  dispatchFontWeight(title: string) {
+    this.store.dispatch(editFontWeightAction({ id: this.selectedId , fontWeight: title}))
+  }
 
   stylesForm = new FormGroup({
     height: new FormControl(),
@@ -81,19 +83,6 @@ export class AccordionComponent implements OnInit {
         )
       );
 
-    // this.store.select(selectedWidthSelector).subscribe((data) => {
-    //   this.widthValue = data.slice(0, -2);
-    //   this.stylesForm.patchValue({
-    //     height: this.heightValue,
-    //     width: this.widthValue,
-    //     colorRGB: this.colorRGBValue,
-    //     fontSize: '',
-    //     inputPlaceholder: '',
-    //     borderRadius: '',
-    //     borderWidth: '',
-    //   })
-    //   console.log('1')
-    // });
 
     this.store
       .select(selectedIDSelector)
@@ -102,30 +91,23 @@ export class AccordionComponent implements OnInit {
         this.widthValue = data.slice(0, -2);
       });
 
-    // this.store.select(selectedWidthSelector).subscribe((data) => {
-    //   this.widthValue = data.slice(0, -2);
-    // });
+    this.store
+      .select(selectedIDSelector)
+      .pipe(switchMapTo(this.store.select(selectedHeightSelector)))
+      .subscribe((data) => {
+        this.heightValue = data.slice(0, -2);
+      });
 
-    this.store.select(selectedHeightSelector).subscribe((data) => {
-      this.heightValue = data.slice(0, -2);
-    });
+    this.store
+      .select(selectedIDSelector)
+      .pipe(switchMapTo(this.store.select(selectedPlaceholderSelector)))
+      .subscribe((data) => {
+        this.placeholderValue = data;
+      });
 
-    this.store.select(selectedPlaceholderSelector).subscribe((data) => {
-      this.placeholderValue = data;
-    });
+
+
   }
 }
 
-// this.store
-//   .select(itemsSelector)
-//   .pipe(
-//     map((dataArray: ITem[]) =>
-//       dataArray.filter(
-//         (dataObject: any) => dataObject.id === this.selectedId
-//       )
-//     )
-//     map(())
-//   )
-//   .subscribe((data) => {
-//     this.widthValue = data.map(i => i.width).toString();
-//   });
+

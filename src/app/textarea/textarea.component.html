@@ -1,15 +1,22 @@
 <mat-form-field
   appearance="fill"
-[ngStyle]="{    borderWidth: this.borderWidth,
-  borderRadius: this.borderRadius, width: this.width,borderStyle: this.borderStyle
-}"
+  [ngStyle]="{
+    borderWidth: stylesObj.borderWidth,
+    borderRadius: stylesObj.borderRadius,
+    width: stylesObj.width,
+    borderStyle: stylesObj.borderStyle
+  }"
 >
   <mat-label>Textarea</mat-label>
-  <textarea matInput   [ngStyle]="{
-    color: colorRGB,
-    height: this.height,
-    fontWeight: this.fontWeight,
-    fontSize: this.fontSize,
-    colorRGB: this.colorRGB
-  }">{{placeholder}}</textarea>
+  <textarea
+    matInput
+    [ngStyle]="{
+      color: stylesObj.colorRGB,
+      height: stylesObj.height,
+      fontWeight: stylesObj.fontWeight,
+      fontSize: stylesObj.fontSize,
+      colorRGB: stylesObj.colorRGB
+    }"
+    >{{ stylesObj.placeholder }}</textarea
+  >
 </mat-form-field>

@@ -1,6 +1,27 @@
-<mat-form-field appearance="fill">
-  <mat-label>Select an option</mat-label>
-  <mat-select disableRipple>
+<mat-form-field
+  [ngStyle]="{
+    width: stylesObj.width,
+    borderStyle: stylesObj.borderStyle,
+    borderWidth: stylesObj.borderWidth,
+    borderRadius: stylesObj.borderRadius
+  }"
+  appearance="fill"
+>
+  <mat-label
+    [ngStyle]="{
+      color: stylesObj.colorRGB,
+      fontWeight: stylesObj.fontWeight,
+      fontSize: stylesObj.fontSize
+    }"
+    >{{ stylesObj.placeholder || "Select an option" }}</mat-label
+  >
+  <mat-select
+    disableRipple
+    [ngStyle]="{
+      height: stylesObj.height,
+      color: stylesObj.colorRGB
+    }"
+  >
     <mat-option value="1">Option 1</mat-option>
     <mat-option value="2">Option 2</mat-option>
     <mat-option value="3">Option 3</mat-option>

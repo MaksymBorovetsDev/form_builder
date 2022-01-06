@@ -1,18 +1,18 @@
 <button
   class="button"
   [ngStyle]="{
-    color: colorRGB,
-    width: this.width,
-    height: this.height,
-    fontWeight: this.fontWeight,
-    fontSize: this.fontSize,
-    colorRGB: this.colorRGB,
-    borderStyle: this.borderStyle,
-    borderWidth: this.borderWidth,
-    borderRadius: this.borderRadius
+    color: stylesObj.colorRGB,
+    width: stylesObj.width,
+    height: stylesObj.height,
+    fontWeight: stylesObj.fontWeight,
+    fontSize: stylesObj.fontSize,
+    colorRGB: stylesObj.colorRGB,
+    borderStyle: stylesObj.borderStyle,
+    borderWidth: stylesObj.borderWidth,
+    borderRadius: stylesObj.borderRadius
   }"
   mat-raised-button="mat-raised-button"
   cdkDrag="cdkDrag"
 >
-  {{ placeholder || "Click Me" }}
+  {{ stylesObj.placeholder || "Click Me" }}
 </button>

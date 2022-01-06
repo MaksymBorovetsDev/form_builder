@@ -29,47 +29,28 @@
       <app-input-component
         *ngIf="item.name === 'input'"
         [id]="item.id"
-        [width]="item.width"
-        [height]="item.height"
-        [placeholder]="item.placeholder"
-        [fontWeight]="item.fontWeight"
-        [fontSize]="item.fontSize"
-        [colorRGB]="item.colorRGB"
-        [borderStyle]="item.borderStyle"
-        [borderWidth]="item.borderWidth"
-        [borderRadius]="item.borderRadius"
+        [stylesObj]="item"
       ></app-input-component>
 
       <app-button-component
         *ngIf="item.name === 'button'"
-        [width]="item.width"
-        [height]="item.height"
-        [placeholder]="item.placeholder"
-        [fontWeight]="item.fontWeight"
-        [fontSize]="item.fontSize"
-        [colorRGB]="item.colorRGB"
-        [borderStyle]="item.borderStyle"
-        [borderWidth]="item.borderWidth"
-        [borderRadius]="item.borderRadius"
+        [stylesObj]="item"
       ></app-button-component>
 
       <app-textarea
         *ngIf="item.name === 'textarea'"
-        [width]="item.width"
-        [height]="item.height"
-        [placeholder]="item.placeholder"
-        [fontWeight]="item.fontWeight"
-        [fontSize]="item.fontSize"
-        [colorRGB]="item.colorRGB"
-        [borderStyle]="item.borderStyle"
-        [borderWidth]="item.borderWidth"
-        [borderRadius]="item.borderRadius"
+        [stylesObj]="item"
       ></app-textarea>
 
-      <app-checkbox *ngIf="item.name === 'checkbox'"></app-checkbox>
+      <app-checkbox 
+      *ngIf="item.name === 'checkbox'" 
+      [stylesObj]="item"
+      ></app-checkbox>
 
       <app-select-option
         *ngIf="item.name === 'select option'"
+        [stylesObj]="item"
+
       ></app-select-option>
     </div>
   </div>

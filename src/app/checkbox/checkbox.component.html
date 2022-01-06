@@ -1,3 +1,24 @@
-<section class="example-section">
-    <mat-checkbox class="example-margin">Check me!</mat-checkbox>
-  </section>
+<section
+  class="example-section"
+  [ngStyle]="{
+    width:stylesObj.width,
+    height:stylesObj.height,
+    borderStyle: stylesObj.borderStyle,
+    borderWidth: stylesObj.borderWidth,
+    borderRadius: stylesObj.borderRadius,
+    display : 'flex',
+    flexDirection : 'row',
+    alignItems : 'center',
+    justifyContent : 'center'
+  }"
+>
+  <mat-checkbox
+    class="example-margin"
+    [ngStyle]="{
+      color: stylesObj.colorRGB,
+      fontWeight: stylesObj.fontWeight,
+      fontSize: stylesObj.fontSize
+    }"
+    >{{ stylesObj.placeholder || "Check me!" }}</mat-checkbox
+  >
+</section>
