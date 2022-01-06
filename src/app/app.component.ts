@@ -11,6 +11,7 @@ import { DraganddropComponent } from './draganddrop/draganddrop.component';
 })
 export class AppComponent implements OnInit {
   title = 'dgndrop';
+  user:boolean = false
     //  PORTAL >
     readonly components = [DraganddropComponent];
     portal! : ComponentPortal<any> 

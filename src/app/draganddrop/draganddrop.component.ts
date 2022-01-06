@@ -1,9 +1,14 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import {
   CdkDragDrop,
   copyArrayItem,
-  moveItemInArray,
-  transferArrayItem,
+  moveItemInArray
 } from '@angular/cdk/drag-drop';
 import { Store } from '@ngrx/store';
 import { v4 as uuidv4 } from 'uuid';
@@ -14,13 +19,7 @@ import {
 } from '../reducers/selectedComponent';
 import { addItemAction, ITem, itemsSelector } from '../reducers/items';
 import { ISelectedComponentStyles } from './draganddrop.interface';
-// portal >
-import { ComponentPortal, DomPortalHost } from '@angular/cdk/portal';
-// < portal 
-
-
-
-
+import { Subject, takeUntil } from 'rxjs';
 
 export interface DragAndDropData {
   name: string;
@@ -32,8 +31,9 @@ export interface DragAndDropData {
   templateUrl: './draganddrop.component.html',
   styleUrls: ['./draganddrop.component.scss'],
 })
-export class DraganddropComponent implements OnInit {
+export class DraganddropComponent implements OnInit, OnDestroy {
   selectedId: string = '';
+  private ngUnsubscribe = new Subject<void>();
 
   dispatchSelectedCompoent(item: ISelectedComponentStyles) {
     this.store.dispatch(
@@ -52,9 +52,9 @@ export class DraganddropComponent implements OnInit {
   }
 
   done: string[] = ['input', 'button', 'textarea', 'checkbox', 'select option'];
+  todo: string[] = [];
 
   data: ITem[] = [];
-  todo: any[] = [];
 
   drop(event: CdkDragDrop<any>) {
     if (event.previousContainer === event.container) {
@@ -63,6 +63,7 @@ export class DraganddropComponent implements OnInit {
         event.previousIndex,
         event.currentIndex
       );
+
     } else {
       copyArrayItem(
         event.previousContainer.data,
@@ -90,53 +91,27 @@ export class DraganddropComponent implements OnInit {
       );
     }
   }
-  //  PORTAL >
-
-  readonly components = [ChildOneComponent, ChildTwoComponent, ChildThreeComponent];
-  
-  section1! : ComponentPortal<any> 
-
-  // < portal
-
-  ngOnInit(): void {
-    this.store.select(itemsSelector).subscribe((data) => {
-      this.data = data;
-    });
-
-    this.store.select(selectedIDSelector).subscribe((data) => {
-      this.selectedId = data;
-    });
-
-
-    // portal>
-    this.section1 = new ComponentPortal(this.components[0])
- // <portal
-  }
 
   constructor(private store: Store) {}
+
+  ngOnInit(): void {
+    this.store
+      .select(itemsSelector)
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((data) => {
+        this.data = data;
+      });
+
+    this.store
+      .select(selectedIDSelector)
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((data) => {
+        this.selectedId = data;
+      });
+  }
+
+  ngOnDestroy() {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
+  }
 }
-
-
-// portal >
-@Component({
-  selector: 'app-child-one',
-  template: `<p>I am child one.</p>`
-})
-export class ChildOneComponent  {
-}
-
-@Component({
-  selector: 'app-child-two',
-  template: `<p>I am child two.</p>`
-})
-export class ChildTwoComponent  {
-}
-
-@Component({
-  selector: 'app-child-two',
-  template: `<p>I am child three.</p>`
-})
-export class ChildThreeComponent  {
-}
-
-// < portal

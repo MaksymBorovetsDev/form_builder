@@ -1,9 +1,5 @@
-import {
-  Component,
-  OnInit,
-  Input,
-} from '@angular/core';
-import {  FormControl, FormGroup } from '@angular/forms';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 
 import {
@@ -15,8 +11,7 @@ import {
   tap,
   switchMapTo,
 } from 'rxjs/operators';
-import { interval, timer } from 'rxjs';
-
+import { interval, Subject, timer } from 'rxjs';
 
 import {
   editBorderStyleAction,
@@ -41,9 +36,10 @@ import {
   templateUrl: './accordion.component.html',
   styleUrls: ['./accordion.component.scss'],
 })
-export class AccordionComponent implements OnInit {
+export class AccordionComponent implements OnInit, OnDestroy {
   @Input() selectedId: string = '';
   @Input() name: string = '';
+  private ngUnsubscribe = new Subject<void>();
 
   items = ['Global Controls'];
   borderStyle: string = 'none';
@@ -79,21 +75,21 @@ export class AccordionComponent implements OnInit {
     borderWidth: new FormControl(),
   });
 
-  constructor(private store: Store) {
-
-
-  }
+  constructor(private store: Store) {}
 
   ngOnInit() {
     this.stylesForm.valueChanges
-      .pipe(debounceTime(500), distinctUntilChanged())
+      .pipe(
+        debounceTime(500),
+        distinctUntilChanged(),
+        takeUntil(this.ngUnsubscribe)
+      )
       .pipe(
         tap((val) => console.log(`BEFORE MAP: ${val}`)),
-        map((val) => val ),
+        map((val) => val),
         tap((val) => console.log(`AFTER MAP: ${val}`))
       )
       .subscribe((val) =>
-
         this.store.dispatch(
           editItemStylesAction({
             id: this.selectedId,
@@ -110,58 +106,87 @@ export class AccordionComponent implements OnInit {
 
     this.store
       .select(selectedIDSelector)
-      .pipe(switchMapTo(this.store.select(selectedWidthSelector)))
+      .pipe(
+        switchMapTo(this.store.select(selectedWidthSelector)),
+        takeUntil(this.ngUnsubscribe)
+      )
       .subscribe((data) => {
         this.widthValue = data.slice(0, -2);
       });
 
     this.store
       .select(selectedIDSelector)
-      .pipe(switchMapTo(this.store.select(selectedHeightSelector)))
+      .pipe(
+        switchMapTo(this.store.select(selectedHeightSelector)),
+        takeUntil(this.ngUnsubscribe)
+      )
       .subscribe((data) => {
         this.heightValue = data.slice(0, -2);
       });
 
     this.store
       .select(selectedIDSelector)
-      .pipe(switchMapTo(this.store.select(selectedPlaceholderSelector)))
+      .pipe(
+        switchMapTo(this.store.select(selectedPlaceholderSelector)),
+        takeUntil(this.ngUnsubscribe)
+      )
       .subscribe((data) => {
         this.placeholderValue = data;
       });
 
     this.store
       .select(selectedIDSelector)
-      .pipe(switchMapTo(this.store.select(selectedFontSizeSelector)))
+      .pipe(
+        switchMapTo(this.store.select(selectedFontSizeSelector)),
+        takeUntil(this.ngUnsubscribe)
+      )
       .subscribe((data) => {
         this.fontSizeValue = data.slice(0, -2);
       });
 
     this.store
       .select(selectedIDSelector)
-      .pipe(switchMapTo(this.store.select(selectedColorRGBSelector)) )
+      .pipe(
+        switchMapTo(this.store.select(selectedColorRGBSelector)),
+        takeUntil(this.ngUnsubscribe)
+      )
       .subscribe((data) => {
         this.colorRGBValue = data;
       });
 
     this.store
       .select(selectedIDSelector)
-      .pipe(switchMapTo(this.store.select(selectedBorderWidthSelector)))
+      .pipe(
+        switchMapTo(this.store.select(selectedBorderWidthSelector)),
+        takeUntil(this.ngUnsubscribe)
+      )
       .subscribe((data) => {
         this.borderWidthValue = data.slice(0, -2);
       });
 
     this.store
       .select(selectedIDSelector)
-      .pipe(switchMapTo(this.store.select(selectedBorderRadiusSelector)))
+      .pipe(
+        switchMapTo(this.store.select(selectedBorderRadiusSelector)),
+        takeUntil(this.ngUnsubscribe)
+      )
       .subscribe((data) => {
         this.borderRadiusValue = data.slice(0, -2);
       });
 
     this.store
       .select(selectedIDSelector)
-      .pipe(switchMapTo(this.store.select(selectedBorderStyleSelector)))
+      .pipe(
+        switchMapTo(this.store.select(selectedBorderStyleSelector)),
+        takeUntil(this.ngUnsubscribe)
+      )
       .subscribe((data) => {
         this.borderStyle = data;
       });
+  }
+
+  ngOnDestroy() {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 }

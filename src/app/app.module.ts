@@ -19,7 +19,6 @@ import { MatIconModule } from '@angular/material/icon'
 import { MatSelectModule } from '@angular/material/select';
 import { InputComponentComponent } from './input-component/input-component.component';
 import { ButtonComponentComponent } from './button-component/button-component.component';
-import { PortalComponent } from './portal/portal.component';
 import { TextareaComponent } from './textarea/textarea.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
 import { SelectOptionComponent } from './select-option/select-option.component';
@@ -30,7 +29,7 @@ import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { AppEffects } from './app.effects';
 import { AccordionComponent } from './accordion/accordion.component';
-import { StylesControlerSectionComponent } from './styles-controler-section/styles-controler-section.component';
+import { AuthComponent } from './auth/auth.component';
 
 
 
@@ -43,12 +42,12 @@ import { StylesControlerSectionComponent } from './styles-controler-section/styl
     DraganddropComponent,
     InputComponentComponent,
     ButtonComponentComponent,
-    PortalComponent,
     TextareaComponent,
     CheckboxComponent,
     SelectOptionComponent,
     AccordionComponent,
-    StylesControlerSectionComponent,
+    AuthComponent,
+
 
 
   ],
