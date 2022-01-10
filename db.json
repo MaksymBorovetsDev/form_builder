@@ -1,0 +1,10 @@
+{
+  "signupUsers": [
+    {
+      "email": "g@g.ru",
+      "username": "MB",
+      "password": "1234567",
+      "id": 1
+    }
+  ]
+}

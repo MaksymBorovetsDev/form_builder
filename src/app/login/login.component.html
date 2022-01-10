@@ -1,0 +1,79 @@
+<div class="logInContainer">
+    <form action="" [formGroup]="signInForm" (ngSubmit)="submit()">
+      <h2>Log In</h2>
+      <div class="example-container">
+        <mat-form-field appearance="fill" [ngStyle]="{ width: '333px' }">
+          <mat-label>Enter your email</mat-label>
+          <input
+            matInput
+            placeholder="pat@example.com"
+            formControlName="email"
+            required
+          />
+          <mat-error *ngIf="signInForm.get('email')?.invalid">{{
+            getErrorMessageEmail()
+          }}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="example-container">
+        <mat-form-field
+          appearance="fill"
+          [ngStyle]="{
+            width: '333px',
+            marginTop: '10px',
+            marginBottom: '15px'
+          }"
+        >
+
+          <mat-label>Enter your password</mat-label>
+          <input
+            matInput
+            [type]="hide ? 'password' : 'text'"
+            formControlName="password"
+            required
+          />
+          <mat-error *ngIf="signInForm.get('email')?.invalid">{{
+            getErrorMessagePassword()
+          }}</mat-error>
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="hide = !hide"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide"
+          >
+            <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+      <div
+        [ngStyle]="{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          flexDirection: 'row'
+        }"
+      >
+        <button
+          mat-button
+          color="primary"
+          type="submit"
+          [disabled]="signInForm.invalid"
+        >
+          Submit
+        </button>
+        <small class="small"
+          >Haven't account yet?
+          <button
+            mat-button
+            color="primary"
+            type="submit"
+            (click)="toggleSignInLogIn('signin')"
+
+          >
+            Sign In
+          </button></small
+        >
+      </div>
+    </form>
+  </div>

@@ -51,18 +51,24 @@ export class DraganddropComponent implements OnInit, OnDestroy {
     );
   }
 
-  done: string[] = ['input', 'button', 'textarea', 'checkbox', 'select option'];
+  typeList: string[] = ['input', 'button', 'textarea', 'checkbox', 'select option'];
   todo: string[] = [];
 
-  data: ITem[] = [];
+  componentsList: ITem[] = [];
 
-  drop(event: CdkDragDrop<any>) {
+
+  drop2(event: CdkDragDrop<any[]>) {
+    moveItemInArray(this.componentsList, event.previousIndex, event.currentIndex);
+  }
+
+  drop(event: CdkDragDrop<any[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(
         event.container.data,
         event.previousIndex,
         event.currentIndex
       );
+
 
     } else {
       copyArrayItem(
@@ -99,7 +105,7 @@ export class DraganddropComponent implements OnInit, OnDestroy {
       .select(itemsSelector)
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe((data) => {
-        this.data = data;
+        this.componentsList = [...data];
       });
 
     this.store

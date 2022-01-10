@@ -2,14 +2,4 @@
     <app-draganddrop></app-draganddrop>
 </div> -->
 
-<div *ngIf="!user; else formBuilder">
-    <app-auth></app-auth>
-</div>
-
-<ng-template #formBuilder>
-    <div class="appContainer">
-        <ng-template [cdkPortalOutlet]="portal"></ng-template>
-    </div>
-</ng-template>
-
-
+<router-outlet></router-outlet>

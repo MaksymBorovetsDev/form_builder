@@ -29,7 +29,11 @@ import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { AppEffects } from './app.effects';
 import { AccordionComponent } from './accordion/accordion.component';
-import { AuthComponent } from './auth/auth.component';
+import { ExampleComponent } from './example/example.component';
+import { SigninComponent } from './signin/signin.component';
+import { LoginComponent } from './login/login.component';
+import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -46,7 +50,9 @@ import { AuthComponent } from './auth/auth.component';
     CheckboxComponent,
     SelectOptionComponent,
     AccordionComponent,
-    AuthComponent,
+    ExampleComponent,
+    SigninComponent,
+    LoginComponent,
 
 
 
@@ -71,7 +77,9 @@ import { AuthComponent } from './auth/auth.component';
       metaReducers
     }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    EffectsModule.forRoot([AppEffects])
+    EffectsModule.forRoot([AppEffects]),
+    AppRoutingModule,
+    HttpClientModule,
 
   ],
   providers: [],

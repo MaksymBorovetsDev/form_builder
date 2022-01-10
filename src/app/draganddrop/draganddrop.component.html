@@ -13,19 +13,20 @@
 
   <div
     cdkDropList="cdkDropList"
-    #todoList="cdkDropList"
-    [cdkDropListData]="todo"
+    #componentListId="cdkDropList"
+    [cdkDropListData]="componentsList"
     class="example-list"
     (cdkDropListDropped)="drop($event)"
   >
+
     <div
-      *ngFor="let item of data; let i = index"
+      *ngFor="let item of componentsList; let i = index"
       cdkDrag="cdkDrag"
       class="example-box"
       (click)="dispatchSelectedCompoent(item)"
       [ngStyle]="
         selectedId === item.id
-          ? { 'background-color': 'lightgreen' }
+          ? { 'background-color': '#add8e6' }
           : { 'background-color': 'white' }
       "
     >
@@ -64,16 +65,26 @@
 
   <div
     cdkDropList="cdkDropList"
-    #doneList="cdkDropList"
-    [cdkDropListData]="done"
-    [cdkDropListConnectedTo]="[todoList]"
+    #typeListId="cdkDropList"
+    [cdkDropListData]="typeList"
+    [cdkDropListConnectedTo]="[componentListId]"
     class="example-list"
     (cdkDropListDropped)="drop($event)"
   >
-    <div class="example-box" *ngFor="let item of done" cdkDrag="cdkDrag">
+    <div class="example-box" *ngFor="let item of typeList" cdkDrag="cdkDrag">
       {{ item }}
     </div>
   </div>
+    <!--  -->
+      <h2 [ngStyle]="{marginTop : '15px'}">Position Controls</h2>
+    <div cdkDropList class="example-list" (cdkDropListDropped)="drop2($event)">
+      <div class="example-box" *ngFor="let item of componentsList" cdkDrag>
+        <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+        {{item.name}}
+      </div>
+    </div>
+  
+  <!--  -->
 </div>
 
 
