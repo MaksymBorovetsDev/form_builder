@@ -22,13 +22,10 @@
       [attr.id]="'accordion-body-' + index"
       [attr.aria-labelledby]="'accordion-header-' + index"
     >
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perferendis
-      excepturi incidunt ipsum deleniti labore, tempore non nam doloribus
-      blanditiis veritatis illo autem iure aliquid ullam rem tenetur deserunt
-      velit culpa?
+      <app-global-styles-accordeon></app-global-styles-accordeon>
     </div>
   </cdk-accordion-item>
-  
+
   <cdk-accordion-item
     #accordionItem="cdkAccordionItem"
     class="example-accordion-item"
@@ -81,7 +78,6 @@
                 formControlName="width"
                 [(ngModel)]="widthValue"
               />
-
             </mat-form-field>
           </div>
           <!--  -->
@@ -125,10 +121,15 @@
               class="itemsContainer"
               aria-label="Select an option"
             >
-              <mat-radio-button value="1" (click)="dispatchFontWeight('lighter')"
+              <mat-radio-button
+                value="1"
+                (click)="dispatchFontWeight('lighter')"
                 >Lighter</mat-radio-button
               >
-              <mat-radio-button value="2" (click)="dispatchFontWeight('normal')">
+              <mat-radio-button
+                value="2"
+                (click)="dispatchFontWeight('normal')"
+              >
                 Normal
               </mat-radio-button>
               <mat-radio-button value="3" (click)="dispatchFontWeight('bold')">
@@ -160,7 +161,9 @@
           </div>
           <!--  -->
           <!-- BORDER CONTROL -->
-          <h3 class="borderStylesControlerContainerTitle">Border Styles Controler</h3>
+          <h3 class="borderStylesControlerContainerTitle">
+            Border Styles Controler
+          </h3>
           <div class="borderStylesControlerContainer">
             <div>
               <label id="example-radio-group-label">Border Style</label>

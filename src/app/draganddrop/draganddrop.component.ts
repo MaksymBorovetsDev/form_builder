@@ -20,6 +20,7 @@ import {
 import { addItemAction, ITem, itemsSelector } from '../reducers/items';
 import { ISelectedComponentStyles } from './draganddrop.interface';
 import { Subject, takeUntil } from 'rxjs';
+import { Unsubscribe } from '../shared/base.unsubscribe.component';
 
 export interface DragAndDropData {
   name: string;
@@ -31,9 +32,9 @@ export interface DragAndDropData {
   templateUrl: './draganddrop.component.html',
   styleUrls: ['./draganddrop.component.scss'],
 })
-export class DraganddropComponent implements OnInit, OnDestroy {
+export class DraganddropComponent extends Unsubscribe implements  OnInit {
   selectedId: string = '';
-  private ngUnsubscribe = new Subject<void>();
+
 
   dispatchSelectedCompoent(item: ISelectedComponentStyles) {
     this.store.dispatch(
@@ -98,7 +99,9 @@ export class DraganddropComponent implements OnInit, OnDestroy {
     }
   }
 
-  constructor(private store: Store) {}
+  constructor(private store: Store) {
+    super()
+  }
 
   ngOnInit(): void {
     this.store
@@ -116,8 +119,4 @@ export class DraganddropComponent implements OnInit, OnDestroy {
       });
   }
 
-  ngOnDestroy() {
-    this.ngUnsubscribe.next();
-    this.ngUnsubscribe.complete();
-  }
 }

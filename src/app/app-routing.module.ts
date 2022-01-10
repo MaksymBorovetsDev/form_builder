@@ -8,7 +8,7 @@ import { SigninComponent } from './signin/signin.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full'},
-  { path: 'formbuilder', component: DraganddropComponent, canActivate: [AuthGuardService]},
+  { path: 'formbuilder', component: DraganddropComponent, /*canActivate: [AuthGuardService]*/  },
   { path: 'login', component: LoginComponent },
   { path: 'signin', component: SigninComponent },
 ];

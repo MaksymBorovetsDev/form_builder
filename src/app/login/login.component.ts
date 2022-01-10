@@ -57,15 +57,6 @@ export class LoginComponent implements OnInit, OnDestroy{
           );
           
         });
-        // this.store.dispatch(
-        //   setUserAction({
-        //     id: user.id,
-        //     password: user.password,
-        //     username: user.username,
-        //     email: user.email,
-
-        //   })
-        // );
 
         if (user) {
           this.store.dispatch(
@@ -77,8 +68,7 @@ export class LoginComponent implements OnInit, OnDestroy{
 
             })
           );
-          // this.store.dispatch(setIsAuthenticatedAction({isAuthenticated: true}))
-          alert('Login Successfull');
+
           this.router.navigate(['formbuilder'])
           this.logInForm.reset();
         } else {

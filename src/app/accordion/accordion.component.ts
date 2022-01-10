@@ -30,18 +30,20 @@ import {
   selectedPlaceholderSelector,
   selectedWidthSelector,
 } from '../reducers/selectedComponent';
+import { Unsubscribe } from '../shared/base.unsubscribe.component';
+
 
 @Component({
   selector: 'app-accordion',
   templateUrl: './accordion.component.html',
   styleUrls: ['./accordion.component.scss'],
 })
-export class AccordionComponent implements OnInit, OnDestroy {
+export class AccordionComponent extends Unsubscribe implements OnInit {
   @Input() selectedId: string = '';
   @Input() name: string = '';
-  private ngUnsubscribe = new Subject<void>();
 
   items = ['Global Controls'];
+
   borderStyle: string = 'none';
   borderWidthValue = '';
   fontWeight: string = 'normal';
@@ -75,7 +77,9 @@ export class AccordionComponent implements OnInit, OnDestroy {
     borderWidth: new FormControl(),
   });
 
-  constructor(private store: Store) {}
+  constructor(private store: Store) {
+    super();
+  }
 
   ngOnInit() {
     this.stylesForm.valueChanges
@@ -185,8 +189,4 @@ export class AccordionComponent implements OnInit, OnDestroy {
       });
   }
 
-  ngOnDestroy() {
-    this.ngUnsubscribe.next();
-    this.ngUnsubscribe.complete();
-  }
 }

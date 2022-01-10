@@ -17,11 +17,11 @@ import { MatChipsModule } from '@angular/material/chips'
 import { MatListModule } from '@angular/material/list'
 import { MatIconModule } from '@angular/material/icon'
 import { MatSelectModule } from '@angular/material/select';
-import { InputComponentComponent } from './input-component/input-component.component';
-import { ButtonComponentComponent } from './button-component/button-component.component';
-import { TextareaComponent } from './textarea/textarea.component';
-import { CheckboxComponent } from './checkbox/checkbox.component';
-import { SelectOptionComponent } from './select-option/select-option.component';
+import { InputComponentComponent } from './shared/components/input-component/input-component.component';
+import { ButtonComponentComponent } from './shared/components/button-component/button-component.component';
+import { TextareaComponent } from './shared/components/textarea/textarea.component';
+import { CheckboxComponent } from './shared/components/checkbox/checkbox.component';
+import { SelectOptionComponent } from './shared/components/select-option/select-option.component';
 import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -29,11 +29,12 @@ import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { AppEffects } from './app.effects';
 import { AccordionComponent } from './accordion/accordion.component';
-import { ExampleComponent } from './example/example.component';
+
 import { SigninComponent } from './signin/signin.component';
 import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { GlobalStylesAccordeonComponent } from './accordion/global-styles-accordeon/global-styles-accordeon.component';
 
 
 
@@ -50,9 +51,10 @@ import { HttpClientModule } from '@angular/common/http';
     CheckboxComponent,
     SelectOptionComponent,
     AccordionComponent,
-    ExampleComponent,
     SigninComponent,
     LoginComponent,
+    GlobalStylesAccordeonComponent,
+
 
 
 
