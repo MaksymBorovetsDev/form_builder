@@ -1,5 +1,5 @@
 <div class="logInContainer">
-    <form action="" [formGroup]="signInForm" (ngSubmit)="submit()">
+    <form action="" [formGroup]="logInForm" (ngSubmit)="submit()">
       <h2>Log In</h2>
       <div class="example-container">
         <mat-form-field appearance="fill" [ngStyle]="{ width: '333px' }">
@@ -10,7 +10,7 @@
             formControlName="email"
             required
           />
-          <mat-error *ngIf="signInForm.get('email')?.invalid">{{
+          <mat-error *ngIf="logInForm.get('email')?.invalid">{{
             getErrorMessageEmail()
           }}</mat-error>
         </mat-form-field>
@@ -32,7 +32,7 @@
             formControlName="password"
             required
           />
-          <mat-error *ngIf="signInForm.get('email')?.invalid">{{
+          <mat-error *ngIf="logInForm.get('email')?.invalid">{{
             getErrorMessagePassword()
           }}</mat-error>
           <button
@@ -58,7 +58,7 @@
           mat-button
           color="primary"
           type="submit"
-          [disabled]="signInForm.invalid"
+          [disabled]="logInForm.invalid"
         >
           Submit
         </button>
