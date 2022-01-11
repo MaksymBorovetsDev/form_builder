@@ -14,7 +14,7 @@ import { IInputStyles } from './input-componet.interface';
 export class InputComponentComponent implements OnInit {
   @Input() stylesObj : IInputStyles = {
     width: '160px',
-    height: '50px',
+    height: '',
     placeholder: '',
     fontWeight: 'normal',
     fontSize: '5px',

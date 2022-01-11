@@ -21,6 +21,7 @@ import { addItemAction, ITem, itemsSelector } from '../reducers/items';
 import { ISelectedComponentStyles } from './draganddrop.interface';
 import { Subject, takeUntil } from 'rxjs';
 import { Unsubscribe } from '../shared/base.unsubscribe.component';
+import { formBackgroundColorSelector, formBorderStyleSelector, formFontSizeSelector, formFontWeightSelector, formPlaceholderSelector, formTextSelector } from '../reducers/formStyles';
 
 export interface DragAndDropData {
   name: string;
@@ -33,8 +34,19 @@ export interface DragAndDropData {
   styleUrls: ['./draganddrop.component.scss'],
 })
 export class DraganddropComponent extends Unsubscribe implements  OnInit {
-  selectedId: string = '';
 
+
+  constructor(private store: Store) {
+    super()
+  }
+
+  selectedId: string = '';
+  yourFormLabel = ''
+  textColor$  = this.store.select(formTextSelector)
+  backgroundColor$  = this.store.select(formBackgroundColorSelector)
+  fontSize$  = this.store.select(formFontSizeSelector)
+  fontWeight$  = this.store.select(formFontWeightSelector)
+  borderStyle = ''
 
   dispatchSelectedCompoent(item: ISelectedComponentStyles) {
     this.store.dispatch(
@@ -86,7 +98,6 @@ export class DraganddropComponent extends Unsubscribe implements  OnInit {
           id: uuidv4(),
           name: titleDND,
           width: '205px',
-          height: '40px',
           placeholder: '',
           fontWeight: 'normal',
           fontSize: '13px',
@@ -99,9 +110,6 @@ export class DraganddropComponent extends Unsubscribe implements  OnInit {
     }
   }
 
-  constructor(private store: Store) {
-    super()
-  }
 
   ngOnInit(): void {
     this.store
@@ -117,6 +125,23 @@ export class DraganddropComponent extends Unsubscribe implements  OnInit {
       .subscribe((data) => {
         this.selectedId = data;
       });
+
+    this.store
+      .select(formPlaceholderSelector)
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((data) => {
+        this.yourFormLabel = data;
+      });
+
+    this.store
+      .select(formBorderStyleSelector)
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((data) => {
+        this.borderStyle = data;
+      });
+
+
+
   }
 
 }

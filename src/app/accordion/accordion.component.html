@@ -34,7 +34,7 @@
     [attr.aria-expanded]="accordionItem.expanded"
   >
     <div class="example-accordion-item-header" (click)="accordionItem.toggle()">
-      Selected Item Controls
+      Selected Item Styles Control
 
       <span class="example-accordion-item-description"> </span>
     </div>
@@ -138,6 +138,8 @@
             </mat-radio-group>
           </section>
           <!--  -->
+          <app-font-weight-radiobutton-control formControlName='fontWeight'></app-font-weight-radiobutton-control>
+          <!--  -->
 
           <div [ngStyle]="{ marginTop: '10px' }">
             <mat-form-field class="example-form-field" appearance="fill">
@@ -172,32 +174,32 @@
                 class="example-radio-group"
               >
                 <mat-radio-button
-                  (click)="setBorderStyle('solid')"
                   class="example-radio-button"
-                  value="1"
+                  (click)="setBorderStyle('solid')"
+                  value="solid"
                 >
                   Solid
                 </mat-radio-button>
                 <mat-radio-button
-                  (click)="setBorderStyle('dashed')"
                   class="example-radio-button"
-                  value="2"
+                  (click)="setBorderStyle('dashed')"
+                  value="dashed"
                 >
                   Dashed
                 </mat-radio-button>
                 <mat-radio-button
                   class="example-radio-button"
                   (click)="setBorderStyle('dotted')"
-                  value="3"
+                  value="dotted"
                 >
                   Dotted
                 </mat-radio-button>
                 <mat-radio-button
                   class="example-radio-button"
                   (click)="setBorderStyle('none')"
-                  value="5"
+                  value="none"
                 >
-                  None
+                  <p>None</p>
                 </mat-radio-button>
               </mat-radio-group>
             </div>

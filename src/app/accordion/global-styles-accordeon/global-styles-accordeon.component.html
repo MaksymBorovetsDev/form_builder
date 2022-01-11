@@ -1,1 +1,84 @@
-<p>global-styles-accordeon works!</p>
+<div class="globalStylesContainer">
+  <form [formGroup]="formStylesForm" >
+  <div class="minicontainer">
+    <mat-form-field class="example-form-field" appearance="fill">
+      <mat-label>Form Label</mat-label>
+      <input matInput type="text" [(ngModel)]="placeholderValue" formControlName="placeholder"/>
+      <button
+        *ngIf="placeholderValue"
+        matSuffix
+        mat-icon-button
+        aria-label="Clear"
+        (click)="placeholderValue = ''"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-form-field class="example-form-field" appearance="fill">
+      <mat-label>Text color</mat-label>
+      <input matInput type="text" [(ngModel)]="textColorValue" formControlName="textColor"/>
+      <button
+        *ngIf="textColorValue"
+        matSuffix
+        mat-icon-button
+        aria-label="Clear"
+        (click)="textColorValue = ''"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+
+  <div class="minicontainer">
+    <mat-form-field class="example-form-field" appearance="fill">
+      <mat-label>Background color</mat-label>
+      <input matInput type="text" [(ngModel)]="backgroundColorValue" formControlName="backgroundColor"/>
+      <button
+        *ngIf="backgroundColorValue"
+        matSuffix
+        mat-icon-button
+        aria-label="Clear"
+        (click)="backgroundColorValue = ''"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-form-field class="example-form-field" appearance="fill">
+      <mat-label>Font Size</mat-label>
+      <input matInput type="text" [(ngModel)]="fontSizeValue" formControlName="fontSize" />
+      <button
+        *ngIf="fontSizeValue"
+        matSuffix
+        mat-icon-button
+        aria-label="Clear"
+        (click)="fontSizeValue = ''"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+
+  <div class="minicontainer">
+    <mat-form-field class="example-form-field" appearance="fill">
+      <mat-label>Border Style</mat-label>
+      <mat-select disableRipple>
+        <mat-option (click)='dispatchBorderStyle("solid")' value="solid">Solid</mat-option>
+        <mat-option (click)='dispatchBorderStyle("dotted")' value="dotted">Dotted</mat-option>
+        <mat-option (click)='dispatchBorderStyle("dashed")' value="dashed">Dashed</mat-option>
+        <mat-option (click)='dispatchBorderStyle("none")' value="none">None</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="example-form-field" appearance="fill">
+      <mat-label>Font Weight</mat-label>
+      <mat-select disableRipple>
+        <mat-option (click)='dispatchFontWeight("lighter")' value="lighter">Lighter</mat-option>
+        <mat-option (click)='dispatchFontWeight("normal")' value="normal">Normal</mat-option>
+        <mat-option (click)='dispatchFontWeight("bold")' value="bold">Bold</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</form>
+</div>

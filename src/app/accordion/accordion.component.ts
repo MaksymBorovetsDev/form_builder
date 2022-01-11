@@ -42,13 +42,12 @@ export class AccordionComponent extends Unsubscribe implements OnInit {
   @Input() selectedId: string = '';
   @Input() name: string = '';
 
-  items = ['Global Controls'];
+  items = ['Form Styles Control'];
 
-  borderStyle: string = 'none';
+  borderStyleValue: string = 'none';
   borderWidthValue = '';
   fontWeight: string = 'normal';
   borderRadiusValue = '';
-  expandedIndex = 0;
   placeholderValue = '';
   heightValue = '';
   widthValue = '';
@@ -59,12 +58,13 @@ export class AccordionComponent extends Unsubscribe implements OnInit {
     this.store.dispatch(
       editBorderStyleAction({ id: this.selectedId, borderStyle: title })
     );
+    
   }
 
   dispatchFontWeight(title: string) {
-    this.store.dispatch(
-      editFontWeightAction({ id: this.selectedId, fontWeight: title })
-    );
+    // this.store.dispatch(
+    //   editFontWeightAction({ id: this.selectedId, fontWeight: title })
+    // );
   }
 
   stylesForm = new FormGroup({
@@ -75,6 +75,8 @@ export class AccordionComponent extends Unsubscribe implements OnInit {
     inputPlaceholder: new FormControl(),
     borderRadius: new FormControl(),
     borderWidth: new FormControl(),
+    fontWeight: new FormControl(),
+    
   });
 
   constructor(private store: Store) {
@@ -104,6 +106,7 @@ export class AccordionComponent extends Unsubscribe implements OnInit {
             colorRGB: val.colorRGB,
             borderWidth: val.borderWidth,
             borderRadius: val.borderRadius,
+            fontWeight: val.fontWeight
           })
         )
       );
@@ -185,7 +188,7 @@ export class AccordionComponent extends Unsubscribe implements OnInit {
         takeUntil(this.ngUnsubscribe)
       )
       .subscribe((data) => {
-        this.borderStyle = data;
+        this.borderStyleValue = data;
       });
   }
 

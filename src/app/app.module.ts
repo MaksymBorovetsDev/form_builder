@@ -35,6 +35,7 @@ import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { GlobalStylesAccordeonComponent } from './accordion/global-styles-accordeon/global-styles-accordeon.component';
+import { FontWeightRadiobuttonControlComponent } from './shared/components/font-weight-radiobutton-control/font-weight-radiobutton-control.component';
 
 
 
@@ -54,6 +55,7 @@ import { GlobalStylesAccordeonComponent } from './accordion/global-styles-accord
     SigninComponent,
     LoginComponent,
     GlobalStylesAccordeonComponent,
+    FontWeightRadiobuttonControlComponent,
 
 
 

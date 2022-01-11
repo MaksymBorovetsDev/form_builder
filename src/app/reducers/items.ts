@@ -17,7 +17,6 @@ export const addItemAction = createAction(
     id: string;
     name: string;
     width: string;
-    height: string;
     placeholder: string;
     fontWeight: string;
     fontSize: string;
@@ -39,6 +38,7 @@ export const editItemStylesAction = createAction(
     colorRGB: string;
     borderWidth: string;
     borderRadius: string;
+    fontWeight: string;
   }>()
 );
 
@@ -91,7 +91,7 @@ export const itemsReducer = createReducer(
         id: action.id,
         name: action.name,
         width: action.width,
-        height: action.height,
+        height: '',
         placeholder: action.placeholder,
         fontWeight: action.fontWeight,
         fontSize: action.fontSize,
@@ -99,6 +99,7 @@ export const itemsReducer = createReducer(
         borderStyle: action.borderStyle,
         borderWidth: action.borderWidth,
         borderRadius: action.borderRadius,
+
       },
     ],
   })),
@@ -116,23 +117,25 @@ export const itemsReducer = createReducer(
             colorRGB: action.colorRGB,
             borderWidth: action.borderWidth + 'px',
             borderRadius: action.borderRadius + 'px',
-          }
-        : item
-    ),
-  })),
-
-
-  on(editFontWeightAction, (state, action) => ({
-    ...state,
-    items: state.items.map((item) =>
-      item.id === action.id
-        ? {
-            ...item,
             fontWeight: action.fontWeight,
+
           }
         : item
     ),
   })),
+
+
+  // on(editFontWeightAction, (state, action) => ({
+  //   ...state,
+  //   items: state.items.map((item) =>
+  //     item.id === action.id
+  //       ? {
+  //           ...item,
+  //           fontWeight: action.fontWeight,
+  //         }
+  //       : item
+  //   ),
+  // })),
 
 
   on(editBorderStyleAction, (state, action) => ({

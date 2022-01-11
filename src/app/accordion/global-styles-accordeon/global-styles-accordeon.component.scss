@@ -1,0 +1,14 @@
+.globalStylesContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.minicontainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.example-form-field {
+  width: 150px;
+  padding: 10px;
+}

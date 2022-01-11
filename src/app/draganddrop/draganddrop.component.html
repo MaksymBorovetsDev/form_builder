@@ -1,7 +1,7 @@
 
 
 <div class="example-container">
-  <h2>Make Styles HERE</h2>
+  <h2 >Make Styles HERE</h2>
   <app-accordion
 
     [selectedId]="selectedId"
@@ -17,7 +17,9 @@
     [cdkDropListData]="componentsList"
     class="example-list"
     (cdkDropListDropped)="drop($event)"
+    [ngStyle]="{ backgroundColor: backgroundColor$ | async, borderStyle: borderStyle}"
   >
+    <h3 [ngStyle]="{color: textColor$|async, fontSize: fontSize$|async, fontWeight: fontWeight$ |async}">{{yourFormLabel || 'Your Form Label'}} </h3>
 
     <div
       *ngFor="let item of componentsList; let i = index"
