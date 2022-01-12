@@ -22,6 +22,7 @@ import { ISelectedComponentStyles } from './draganddrop.interface';
 import { Subject, takeUntil } from 'rxjs';
 import { Unsubscribe } from '../shared/base.unsubscribe.component';
 import { formBackgroundColorSelector, formBorderStyleSelector, formFontSizeSelector, formFontWeightSelector, formPlaceholderSelector, formTextSelector } from '../reducers/formStyles';
+import { ChangeDetectionStrategy } from '@angular/compiler';
 
 export interface DragAndDropData {
   name: string;
@@ -32,6 +33,7 @@ export interface DragAndDropData {
   selector: 'app-draganddrop',
   templateUrl: './draganddrop.component.html',
   styleUrls: ['./draganddrop.component.scss'],
+
 })
 export class DraganddropComponent extends Unsubscribe implements  OnInit {
 
@@ -39,7 +41,7 @@ export class DraganddropComponent extends Unsubscribe implements  OnInit {
   constructor(private store: Store) {
     super()
   }
-  
+
   public dataForChild:any = {
     name: 'John Doe',
     age: 20

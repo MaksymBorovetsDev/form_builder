@@ -6,6 +6,10 @@ import { Store } from '@ngrx/store';
 import { Subject, takeUntil } from 'rxjs';
 import { setIsAuthenticatedAction, setUserAction } from '../reducers/user';
 
+enum urls {
+    urlAuth = 'http://localhost:3000/signupUsers'
+}
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,7 +19,8 @@ export class LoginComponent implements OnInit, OnDestroy{
   logInForm!: FormGroup;
   private ngUnsubscribe = new Subject<void>();
 
-  // Sign In >
+
+
 
   hide = true;
   signIn = true;
@@ -46,7 +51,7 @@ export class LoginComponent implements OnInit, OnDestroy{
 
   submit() {
     this.http
-      .get<any>('http://localhost:3000/signupUsers')
+      .get<any>(urls.urlAuth)
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe((res) => {
         const user = res.find((a: any) => {

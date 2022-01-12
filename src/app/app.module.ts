@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Provider } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -34,14 +34,20 @@ import { SigninComponent } from './signin/signin.component';
 
 import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { GlobalStylesAccordeonComponent } from './accordion/global-styles-accordeon/global-styles-accordeon.component';
 import { FontWeightRadiobuttonControlComponent } from './shared/components/font-weight-radiobutton-control/font-weight-radiobutton-control.component';
 import { ChildComponent } from './shared/components/changedetection/child.component';
 import { ChangedetectionComponent } from './shared/components/changedetection/changedetection.component';
+import { AuthInterceptor } from './services/auth.interceptor';
 
 
+const INTERCEPTOR_PROVIDER:Provider = {
+  provide: HTTP_INTERCEPTORS,
+  useClass: AuthInterceptor,
+  multi:true
 
+}
 
 
 
@@ -91,7 +97,7 @@ import { ChangedetectionComponent } from './shared/components/changedetection/ch
     HttpClientModule,
 
   ],
-  providers: [],
+  providers: [INTERCEPTOR_PROVIDER],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

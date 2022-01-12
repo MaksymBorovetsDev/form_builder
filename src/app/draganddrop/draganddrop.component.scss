@@ -1,4 +1,7 @@
-.container{
+@import '../styles/classes.scss';
+
+
+.container {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -14,21 +17,6 @@
   h2 {
     text-align: center;
   }
-}
-
-.example-list {
-  display: flex;
-  padding: 10px;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  border: solid 3px rgb(116, 99, 99);
-  min-height: 60px;
-  background: white;
-  border-radius: 4px;
-  overflow: hidden;
-  display: block;
 }
 
 .example-box {
