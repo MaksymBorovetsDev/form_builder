@@ -39,6 +39,11 @@ export class DraganddropComponent extends Unsubscribe implements  OnInit {
   constructor(private store: Store) {
     super()
   }
+  
+  public dataForChild:any = {
+    name: 'John Doe',
+    age: 20
+  };
 
   selectedId: string = '';
   yourFormLabel = ''

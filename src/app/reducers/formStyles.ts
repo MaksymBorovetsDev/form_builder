@@ -36,6 +36,13 @@ export const setFontWeightAction = createAction(
   }>()
 );
 
+export const setBorderRadiusAction = createAction(
+  '[FORM_STYLES_KEY] set form border radius ',
+  props<{
+    borderRadius: string;
+  }>()
+);
+
 
 // //////
 
@@ -48,6 +55,7 @@ export interface IFormStyles {
   backgroundColor: string;
   borderStyle: string;
   textColor: string;
+  borderRadius: string;
 }
 
 export const initialState: IFormStyles = {
@@ -56,7 +64,8 @@ export const initialState: IFormStyles = {
   fontSize: '',
   backgroundColor: '',
   borderStyle: '',
-  textColor: ''
+  textColor: '',
+  borderRadius: '',
 };
 
 export const formStylesReducer = createReducer(
@@ -81,6 +90,11 @@ export const formStylesReducer = createReducer(
   on(setFontWeightAction, (state, action) => ({
     ...state,
     fontWeight: action.fontWeight
+  })),
+
+  on(setBorderRadiusAction, (state, action) => ({
+    ...state,
+    borderRadius: action.borderRadius
   }))
 
 
@@ -119,4 +133,9 @@ export const formBorderStyleSelector = createSelector(
 export const formFontWeightSelector = createSelector(
   featureSelector,
   (state) => state.fontWeight
+);
+
+export const formBorderRadiuselector = createSelector(
+  featureSelector,
+  (state) => state.borderRadius
 );

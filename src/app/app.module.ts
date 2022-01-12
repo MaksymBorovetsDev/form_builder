@@ -31,11 +31,14 @@ import { AppEffects } from './app.effects';
 import { AccordionComponent } from './accordion/accordion.component';
 
 import { SigninComponent } from './signin/signin.component';
+
 import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { GlobalStylesAccordeonComponent } from './accordion/global-styles-accordeon/global-styles-accordeon.component';
 import { FontWeightRadiobuttonControlComponent } from './shared/components/font-weight-radiobutton-control/font-weight-radiobutton-control.component';
+import { ChildComponent } from './shared/components/changedetection/child.component';
+import { ChangedetectionComponent } from './shared/components/changedetection/changedetection.component';
 
 
 
@@ -56,6 +59,8 @@ import { FontWeightRadiobuttonControlComponent } from './shared/components/font-
     LoginComponent,
     GlobalStylesAccordeonComponent,
     FontWeightRadiobuttonControlComponent,
+    ChildComponent,
+    ChangedetectionComponent
 
 
 

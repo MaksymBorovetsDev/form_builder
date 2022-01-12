@@ -25,6 +25,7 @@ export class GlobalStylesAccordeonComponent
   fontSizeValue = '';
   borderStyleValue = '';
   fontWeightValue = '';
+  childValue :number = +this.fontSizeValue;
 
   formStylesForm = new FormGroup({
     placeholder: new FormControl(),
@@ -32,6 +33,15 @@ export class GlobalStylesAccordeonComponent
     backgroundColor: new FormControl(),
     fontSize: new FormControl(),
   });
+
+  increase(){
+
+    this.childValue = this.childValue + 1
+  }
+
+  decrease(){
+    this.childValue = this.childValue - 1
+  }
 
   dispatchFontWeight(title: string){
     this.store.dispatch(setFontWeightAction({fontWeight: title}))

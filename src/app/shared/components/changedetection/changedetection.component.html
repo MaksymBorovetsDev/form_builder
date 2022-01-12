@@ -1,0 +1,12 @@
+<div class="container">
+
+	Name: <h3>{{borderRadius.name}}</h3>
+	<br /> Age:
+	<button (click)="borderRadius.size = borderRadius.size+1">+</button> {{ borderRadius.size }}
+	<button (click)="borderRadius.size = borderRadius.size-1">-</button>
+	<br />
+	<button (click)="reassign()">Re-Assign</button>
+	<br>
+	<pre>{{ borderRadius | json}}</pre>
+	<child [data]="borderRadius.size"></child>
+</div>

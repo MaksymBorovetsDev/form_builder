@@ -46,18 +46,14 @@
     </mat-form-field>
 
     <mat-form-field class="example-form-field" appearance="fill">
-      <mat-label>Font Size</mat-label>
-      <input matInput type="text" [(ngModel)]="fontSizeValue" formControlName="fontSize" />
-      <button
-        *ngIf="fontSizeValue"
-        matSuffix
-        mat-icon-button
-        aria-label="Clear"
-        (click)="fontSizeValue = ''"
-      >
-        <mat-icon>close</mat-icon>
-      </button>
+      <mat-label>Font Weight</mat-label>
+      <mat-select disableRipple>
+        <mat-option (click)='dispatchFontWeight("lighter")' value="lighter">Lighter</mat-option>
+        <mat-option (click)='dispatchFontWeight("normal")' value="normal">Normal</mat-option>
+        <mat-option (click)='dispatchFontWeight("bold")' value="bold">Bold</mat-option>
+      </mat-select>
     </mat-form-field>
+
   </div>
 
   <div class="minicontainer">
@@ -71,13 +67,22 @@
       </mat-select>
     </mat-form-field>
 
+
+
+
     <mat-form-field class="example-form-field" appearance="fill">
-      <mat-label>Font Weight</mat-label>
-      <mat-select disableRipple>
-        <mat-option (click)='dispatchFontWeight("lighter")' value="lighter">Lighter</mat-option>
-        <mat-option (click)='dispatchFontWeight("normal")' value="normal">Normal</mat-option>
-        <mat-option (click)='dispatchFontWeight("bold")' value="bold">Bold</mat-option>
-      </mat-select>
+      <mat-label>Font Size</mat-label>
+      <input matInput type="text" [(ngModel)]="fontSizeValue" formControlName="fontSize" />
+
+      <button
+        *ngIf="fontSizeValue"
+        matSuffix
+        mat-icon-button
+        aria-label="Clear"
+        (click)="fontSizeValue = ''"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
     </mat-form-field>
   </div>
 </form>

@@ -125,17 +125,6 @@ export const itemsReducer = createReducer(
   })),
 
 
-  // on(editFontWeightAction, (state, action) => ({
-  //   ...state,
-  //   items: state.items.map((item) =>
-  //     item.id === action.id
-  //       ? {
-  //           ...item,
-  //           fontWeight: action.fontWeight,
-  //         }
-  //       : item
-  //   ),
-  // })),
 
 
   on(editBorderStyleAction, (state, action) => ({
